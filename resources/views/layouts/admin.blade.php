@@ -22,13 +22,16 @@
             }
         }
     </script>
-    {{-- Alpine.js untuk interaktivitas dropdown --}}
+    {{-- Alpine.js untuk interaktivitas dropdown dan sidebar mobile --}}
     <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 </head>
 <body class="bg-slate-100 font-inter">
-    <div class="flex min-h-screen">
+    <div x-data="{ sidebarOpen: false }" class="flex min-h-screen">
         <!-- Sidebar -->
-        <aside class="w-64 flex-shrink-0 bg-indigo-800 text-indigo-100 flex flex-col">
+        <aside
+            class="w-64 flex-shrink-0 bg-indigo-800 text-indigo-100 flex flex-col fixed inset-y-0 left-0 z-30 transform md:relative md:translate-x-0 transition-transform duration-300 ease-in-out"
+            :class="{'translate-x-0': sidebarOpen, '-translate-x-full': !sidebarOpen}">
+
             <div class="h-20 flex items-center justify-center px-4">
                 <a href="{{ route('home') }}" class="flex items-center space-x-2">
                     <img src="{{ asset('images/logo.png') }}" onerror="this.src='https://placehold.co/40x40/ffffff/6366f1?text=SP'" alt="Logo Sekolah" class="h-10 w-10">
@@ -73,25 +76,32 @@
                     <i class="fas fa-user-graduate fa-fw mr-3"></i> Kelola Alumni
                 </a>
                 <a href="#" class="mt-2 flex items-center px-4 py-2.5 rounded-lg transition duration-200 hover:bg-indigo-700">
-                    <i class="fas fa-users-cog fa-fw mr-3"></i> Manajemen User (coming Soon)
+                    <i class="fas fa-users-cog fa-fw mr-3"></i> Manajemen User
                 </a>
                 <a href="#" class="mt-2 flex items-center px-4 py-2.5 rounded-lg transition duration-200 hover:bg-indigo-700">
-                    <i class="fas fa-chart-line fa-fw mr-3"></i> Laporan (coming Soon)
+                    <i class="fas fa-chart-line fa-fw mr-3"></i> Laporan
                 </a>
             </nav>
-            {{-- TOMBOL LOGOUT DI SINI DIHAPUS --}}
         </aside>
 
         <!-- Main Content -->
-        <div class="flex-1 flex flex-col">
-            <header class="bg-white shadow-sm h-20 flex items-center justify-between px-8">
-                <div class="text-gray-800">
+        <div class="flex-1 flex flex-col md:ml-64">
+            <header class="bg-white shadow-sm h-20 flex items-center justify-between px-4 md:px-8">
+                {{-- Tombol Hamburger untuk Mobile --}}
+                <div class="md:hidden">
+                    <button @click="sidebarOpen = !sidebarOpen" class="text-gray-500 focus:outline-none">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+
+                <div class="hidden md:block text-gray-800">
                     <h1 class="text-2xl font-bold">@yield('title')</h1>
                 </div>
-                {{-- BAGIAN PROFIL ADMIN DIPERBARUI MENJADI DROPDOWN --}}
+
+                {{-- Dropdown Profil Admin --}}
                 <div x-data="{ open: false }" class="relative">
                     <button @click="open = !open" class="flex items-center focus:outline-none">
-                        <div class="text-right mr-4">
+                        <div class="text-right mr-4 hidden sm:block">
                             <p class="font-semibold text-gray-800">{{ Auth::user()->name }}</p>
                             <p class="text-sm text-gray-500">Administrator</p>
                         </div>
@@ -112,14 +122,14 @@
                          x-transition:leave="transition ease-in duration-150"
                          x-transition:leave-start="opacity-100 transform translate-y-0"
                          x-transition:leave-end="opacity-0 transform -translate-y-2"
-                         class="absolute right-0 mt-2 w-56 bg-white rounded-lg shadow-xl py-2 z-20 border border-gray-100">
+                         class="absolute right-0 mt-2 w-56 bg-white rounded-lg shadow-xl py-2 z-20 border border-gray-100" style="display: none;">
 
                         <div class="px-4 py-2 border-b">
                             <p class="font-bold text-gray-800">{{ Auth::user()->name }}</p>
                             <p class="text-sm text-gray-500">{{ Auth::user()->email }}</p>
                         </div>
 
-                       <a href="{{ route('admin.my-profile.edit') }}" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-indigo-50 hover:text-indigo-600">
+                        <a href="{{ route('admin.my-profile.edit') }}" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-indigo-50 hover:text-indigo-600">
                             <i class="fas fa-user-edit fa-fw mr-3"></i> Edit Profile
                         </a>
 
@@ -132,10 +142,13 @@
                     </div>
                 </div>
             </header>
-            <main class="flex-1 p-8">
+            <main class="flex-1 p-4 md:p-8">
                 @yield('content')
             </main>
         </div>
+
+        <!-- Overlay untuk mobile -->
+        <div x-show="sidebarOpen" @click="sidebarOpen = false" class="fixed inset-0 bg-black opacity-50 z-20 md:hidden" style="display: none;"></div>
     </div>
 </body>
 </html>
