@@ -183,34 +183,34 @@
 
                     <!-- Foto dan Upload Berkas -->
                     <div class="mb-8">
-                        <h2 class="section-title"><span class="text-2xl">📸</span> Foto dan Upload Berkas</h2>
-                        <div class="text-center mb-6">
-                            <label class="block font-medium text-gray-700 mb-2 required">Foto Siswa</label>
-                            <div class="photo-preview" id="photoPreview">
-                                <div class="photo-placeholder">📷</div>
-                            </div>
-                            <input type="file" id="photo" name="photo" accept="image/*" class="hidden" required>
-                            <button type="button" onclick="document.getElementById('photo').click()" class="bg-indigo-500 text-white text-sm font-semibold py-2 px-4 rounded-lg hover:bg-indigo-600">Pilih Foto</button>
-                        </div>
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-4">
-                            <div>
-                                <label class="block font-medium text-gray-700 mb-1">Akta Kelahiran</label>
-                                <input type="file" name="document_birth_certificate" class="w-full text-sm text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:font-semibold file:bg-indigo-50 file:text-indigo-700 hover:file:bg-indigo-100">
-                            </div>
-                            <div>
-                                <label class="block font-medium text-gray-700 mb-1">Kartu Keluarga</label>
-                                <input type="file" name="document_family_card" class="w-full text-sm text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:font-semibold file:bg-indigo-50 file:text-indigo-700 hover:file:bg-indigo-100">
-                            </div>
-                             <div>
-                                <label class="block font-medium text-gray-700 mb-1">Ijazah/SKHUN</label>
-                                <input type="file" name="document_ijazah" class="w-full text-sm text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:font-semibold file:bg-indigo-50 file:text-indigo-700 hover:file:bg-indigo-100">
-                            </div>
-                             <div>
-                                <label class="block font-medium text-gray-700 mb-1">Raport Semester Terakhir</label>
-                                <input type="file" name="document_raport" class="w-full text-sm text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:font-semibold file:bg-indigo-50 file:text-indigo-700 hover:file:bg-indigo-100">
-                            </div>
-                        </div>
-                    </div>
+    <h2 class="section-title"><span class="text-2xl">📸</span> Foto dan Upload Berkas</h2>
+    <div class="text-center mb-6">
+        <label class="block font-medium text-gray-700 mb-2 required">Foto Siswa</label>
+        <div class="photo-preview" id="photoPreview">
+            <div class="photo-placeholder">📷</div>
+        </div>
+        <input type="file" id="photo" name="photo" accept="image/*" class="hidden" required>
+        <button type="button" onclick="document.getElementById('photo').click()" class="bg-indigo-500 text-white text-sm font-semibold py-2 px-4 rounded-lg hover:bg-indigo-600">Pilih Foto</button>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-4">
+        <div>
+            <label class="block font-medium text-gray-700 mb-1 required">Akta Kelahiran</label>
+            <input type="file" name="document_birth_certificate" class="w-full text-sm text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:font-semibold file:bg-indigo-50 file:text-indigo-700 hover:file:bg-indigo-100" required>
+        </div>
+        <div>
+            <label class="block font-medium text-gray-700 mb-1 required">Kartu Keluarga</label>
+            <input type="file" name="document_family_card" class="w-full text-sm text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:font-semibold file:bg-indigo-50 file:text-indigo-700 hover:file:bg-indigo-100" required>
+        </div>
+            <div>
+            <label class="block font-medium text-gray-700 mb-1 required">Ijazah/SKHUN</label>
+            <input type="file" name="document_ijazah" class="w-full text-sm text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:font-semibold file:bg-indigo-50 file:text-indigo-700 hover:file:bg-indigo-100" required>
+        </div>
+            <div>
+            <label class="block font-medium text-gray-700 mb-1 required">Raport Semester Terakhir</label>
+            <input type="file" name="document_raport" class="w-full text-sm text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:font-semibold file:bg-indigo-50 file:text-indigo-700 hover:file:bg-indigo-100" required>
+        </div>
+    </div>
+</div>
 
                     <!-- Persetujuan -->
                      <div class="mb-8">
