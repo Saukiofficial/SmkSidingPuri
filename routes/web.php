@@ -63,6 +63,8 @@ Route::get('/alumni', [AlumniController::class, 'index'])->name('alumni.index');
 
 Route::get('/kontak', [ContactController::class, 'index'])->name('contact.index');
 Route::post('/kontak', [ContactController::class, 'store'])->name('contact.store');
+Route::get('/dewan-guru', [PageController::class, 'teachers'])->name('pages.teachers');
+Route::get('/pengurus-osis', [PageController::class, 'osis'])->name('pages.osis');
 
 /*
 |--------------------------------------------------------------------------
@@ -103,6 +105,7 @@ Route::middleware('auth')->group(function () {
         Route::get('/data-siswa/export', [AdminStudentController::class, 'export'])->name('data-siswa.export');
         Route::get('/data-siswa/template', [AdminStudentController::class, 'downloadTemplate'])->name('data-siswa.template');
         Route::resource('/data-siswa', AdminStudentController::class);
+        Route::resource('/pengurus-osis', \App\Http\Controllers\Admin\OsisMemberController::class);
     });
 });
 

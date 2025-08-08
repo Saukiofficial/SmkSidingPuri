@@ -22,7 +22,7 @@
             }
         }
     </script>
-    {{-- Alpine.js untuk interaktivitas dropdown dan sidebar mobile --}}
+    {{-- Alpine.js untuk interaktivitas dropdown --}}
     <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 </head>
 <body class="bg-slate-100 font-inter">
@@ -74,6 +74,9 @@
                 </a>
                 <a href="{{ route('admin.alumni.index') }}" class="mt-2 flex items-center px-4 py-2.5 rounded-lg transition duration-200 {{ request()->routeIs('admin.alumni.*') ? 'bg-indigo-600 text-white' : 'hover:bg-indigo-700' }}">
                     <i class="fas fa-user-graduate fa-fw mr-3"></i> Kelola Alumni
+                </a>
+                <a href="{{ route('admin.pengurus-osis.index') }}" class="mt-2 flex items-center px-4 py-2.5 rounded-lg transition duration-200 {{ request()->routeIs('admin.pengurus-osis.*') ? 'bg-indigo-600 text-white' : 'hover:bg-indigo-700' }}">
+                    <i class="fas fa-users fa-fw mr-3"></i> Pengurus OSIS
                 </a>
                 <a href="#" class="mt-2 flex items-center px-4 py-2.5 rounded-lg transition duration-200 hover:bg-indigo-700">
                     <i class="fas fa-users-cog fa-fw mr-3"></i> Manajemen User

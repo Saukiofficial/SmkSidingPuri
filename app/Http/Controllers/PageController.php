@@ -15,7 +15,19 @@ class PageController extends Controller
     {
         $profile = SchoolProfile::first();
         return view('pages.frontend.profile.vision-mission', compact('profile'));
+
     }
+    public function teachers()
+{
+    $teachers = \App\Models\Teacher::with('user')->get();
+    return view('pages.frontend.teachers', compact('teachers'));
+}
+
+public function osis()
+{
+    $osisMembers = \App\Models\OsisMember::orderBy('display_order')->get();
+    return view('pages.frontend.osis', compact('osisMembers'));
+}
 
     public function history()
     {
