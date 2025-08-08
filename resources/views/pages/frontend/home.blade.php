@@ -15,8 +15,7 @@
     /* Hero Section - Updated to fit content instead of full screen */
     .luxury-hero {
         position: relative;
-        /* Hapus min-height: 100vh dan ganti dengan padding */
-        padding: 6rem 0 4rem;
+        padding: 6 0 4rem;
         background: var(--primary-gradient);
         overflow: hidden;
     }

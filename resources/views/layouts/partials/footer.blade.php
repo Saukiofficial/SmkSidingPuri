@@ -187,7 +187,7 @@
                                 </div>
                                 <div>
                                     <p class="text-sm font-medium text-blue-300">Jam Operasional</p>
-                                    <p class="text-sm">Senin - Jumat: 07:00 - 15:30</p>
+                                    <p class="text-sm">Senin - sabtu: 07:00 - 13.00</p>
                                 </div>
                             </div>
                         </li>
