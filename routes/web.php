@@ -77,9 +77,9 @@ Route::get('/dashboard', function () {
 
 Route::middleware('auth')->group(function () {
     // Rute profil user bawaan Breeze
-    // Route::get('/profile', [BreezeProfileController::class, 'edit'])->name('profile.edit.user');
-    // Route::patch('/profile', [BreezeProfileController::class, 'update'])->name('profile.update.user');
-    // Route::delete('/profile', [BreezeProfileController::class, 'destroy'])->name('profile.destroy.user');
+    Route::get('/profile', [BreezeProfileController::class, 'edit'])->name('profile.edit.user');
+    Route::patch('/profile', [BreezeProfileController::class, 'update'])->name('profile.update.user');
+    Route::delete('/profile', [BreezeProfileController::class, 'destroy'])->name('profile.destroy.user');
 
     // Grup Rute Panel Admin
     Route::prefix('admin')->name('admin.')->group(function () {
