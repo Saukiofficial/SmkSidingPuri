@@ -12,10 +12,11 @@
         --glass-border: rgba(255, 255, 255, 0.18);
     }
 
-    /* Hero Section */
+    /* Hero Section - Updated to fit content instead of full screen */
     .luxury-hero {
         position: relative;
-        min-height: 100vh;
+        /* Hapus min-height: 100vh dan ganti dengan padding */
+        padding: 6rem 0 4rem;
         background: var(--primary-gradient);
         overflow: hidden;
     }
@@ -89,8 +90,25 @@
     }
 
     @media (min-width: 768px) {
+        .luxury-hero {
+            padding: 8rem 0 6rem;
+        }
+
         .hero-buttons {
             justify-content: flex-start;
+        }
+    }
+
+    @media (min-width: 1024px) {
+        .luxury-hero {
+            padding: 10rem 0 8rem;
+        }
+    }
+
+    /* Mobile responsive */
+    @media (max-width: 767px) {
+        .luxury-hero {
+            padding: 4rem 0 3rem;
         }
     }
 
@@ -495,7 +513,7 @@
         <div class="hero-particles"></div>
 
         <div class="container mx-auto px-6 relative z-10 max-w-7xl">
-            <div class="grid md:grid-cols-2 gap-12 items-center min-h-screen py-20">
+            <div class="grid md:grid-cols-2 gap-12 items-center py-8">
                 <!-- Content Column -->
                 <div class="text-center md:text-left text-white">
                     <h1 class="hero-title">
@@ -625,28 +643,6 @@
                         <li class="flex items-center text-gray-700">
                             <i class="fas fa-check-circle text-green-500 mr-3"></i>
                             Peluang Kerja Tinggi
-                        </li>
-                    </ul>
-                </div>
-
-                <div class="program-card">
-                    <div class="program-icon bg-orange-100 text-orange-600">
-                        <i class="fas fa-cogs"></i>
-                    </div>
-                    <h3 class="text-2xl font-bold mb-3 text-gray-800">Teknik Mesin</h3>
-                    <p class="text-gray-600 mb-6">Mempelajari perancangan, manufaktur, dan pemeliharaan sistem mekanik dengan presisi tinggi.</p>
-                    <ul class="space-y-3">
-                        <li class="flex items-center text-gray-700">
-                            <i class="fas fa-check-circle text-green-500 mr-3"></i>
-                            Software CAD Terkini
-                        </li>
-                        <li class="flex items-center text-gray-700">
-                            <i class="fas fa-check-circle text-green-500 mr-3"></i>
-                            Proyek Industri Nyata
-                        </li>
-                        <li class="flex items-center text-gray-700">
-                            <i class="fas fa-check-circle text-green-500 mr-3"></i>
-                            Kerjasama DU/DI
                         </li>
                     </ul>
                 </div>

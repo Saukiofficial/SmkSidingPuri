@@ -88,7 +88,7 @@
         </aside>
 
         <!-- Main Content -->
-        <div class="flex-1 flex flex-col md:ml-64">
+        <div class="flex-1 flex flex-col min-w-0">
             <header class="bg-white shadow-sm h-20 flex items-center justify-between px-4 md:px-8">
                 {{-- Tombol Hamburger untuk Mobile --}}
                 <div class="md:hidden">
@@ -145,7 +145,7 @@
                     </div>
                 </div>
             </header>
-            <main class="flex-1 p-4 md:p-8">
+            <main class="flex-1 p-4 md:p-6 lg:p-8 overflow-auto">
                 @yield('content')
             </main>
         </div>
@@ -153,5 +153,24 @@
         <!-- Overlay untuk mobile -->
         <div x-show="sidebarOpen" @click="sidebarOpen = false" class="fixed inset-0 bg-black opacity-50 z-20 md:hidden" style="display: none;"></div>
     </div>
+
+    <style>
+        /* Fix untuk memastikan layout tidak overflow */
+        @media (min-width: 768px) {
+            .flex-1 {
+                width: calc(100vw - 256px);
+            }
+        }
+
+        /* Smooth scrolling untuk main content */
+        main {
+            scroll-behavior: smooth;
+        }
+
+        /* Prevent horizontal scroll */
+        body {
+            overflow-x: hidden;
+        }
+    </style>
 </body>
 </html>

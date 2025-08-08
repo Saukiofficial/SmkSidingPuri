@@ -46,7 +46,7 @@
                 <div x-data="{ dropdownOpen: false }" class="relative">
                     <button @click="dropdownOpen = !dropdownOpen"
                             class="relative px-4 py-2.5 flex items-center text-gray-700 font-medium rounded-xl transition-all duration-300 hover:text-indigo-600 group {{ request()->routeIs('profile.*') ? 'text-indigo-600' : '' }}">
-                        <span class="relative z-10">Profil</span>
+                        <span class="relative z-10">Profile</span>
                         <svg class="w-4 h-4 ml-2 transform transition-all duration-300 group-hover:scale-110"
                              :class="{'rotate-180': dropdownOpen, 'text-indigo-500': dropdownOpen}"
                              fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -193,7 +193,7 @@
                 </a>
 
                 <div class="px-4 pt-3 pb-1">
-                    <span class="text-xs text-gray-500 uppercase font-bold tracking-wider">Profil Sekolah</span>
+                    <span class="text-xs text-gray-500 uppercase font-bold tracking-wider">Profile Sekolah</span>
                 </div>
                 <div class="space-y-1 pl-4">
                     <a href="{{ route('profile.vision-mission') }}"
