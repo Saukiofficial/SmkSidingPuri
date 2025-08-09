@@ -9,12 +9,11 @@
     overflow-x: hidden;
 }
 
-/* Hero Section - Mobile Full Height Fix */
+/* Hero Section - Optimized Layout */
 .luxury-hero {
     position: relative;
-    min-height: 100vh; /* Gunakan min-height 100vh untuk mobile */
-    min-height: 100dvh; /* Dynamic viewport height untuk mobile modern */
-    padding: 0; /* Reset padding untuk mobile */
+    min-height: 70vh; /* Reduced from 75vh for tighter spacing */
+    padding: 2rem 0; /* Reduced padding for tighter layout */
     background: var(--primary-gradient);
     overflow: hidden;
     display: flex;
@@ -24,43 +23,47 @@
 /* Mobile specific adjustments */
 @media (max-width: 767px) {
     .luxury-hero {
-        min-height: 100vh;
-        min-height: 100dvh; /* Dynamic viewport height */
-        padding: 2rem 0; /* Minimal padding */
+        min-height: 60vh; /* Smaller on mobile for tighter spacing */
+        min-height: 60dvh; /* Dynamic viewport height */
+        padding: 1.5rem 0; /* Minimal padding */
     }
 
-    /* Ensure content is vertically centered */
+    /* Ensure content is properly spaced */
     .luxury-hero .container {
         display: flex;
         align-items: center;
-        min-height: 100vh;
-        min-height: 100dvh;
+        min-height: auto; /* Remove min-height constraint */
+        padding: 0 1rem;
     }
 
     .luxury-hero .grid {
         width: 100%;
         align-items: center;
+        gap: 1rem; /* Reduced gap for tighter spacing */
     }
 
     /* Adjust hero title for mobile */
     .hero-title {
-        font-size: clamp(2rem, 10vw, 4rem);
-        margin-bottom: 1rem;
+        font-size: clamp(1.8rem, 7vw, 3rem); /* Slightly smaller for better proportion */
+        margin-bottom: 0.75rem; /* Reduced margin */
+        line-height: 1.1;
     }
 
     .hero-subtitle {
-        font-size: clamp(1rem, 4vw, 1.2rem);
-        margin-bottom: 2rem;
+        font-size: clamp(0.95rem, 3.5vw, 1.1rem); /* Slightly smaller */
+        margin-bottom: 1.5rem; /* Reduced margin */
+        line-height: 1.5;
     }
 
     /* Button adjustments for mobile */
     .hero-buttons {
-        gap: 0.75rem;
+        gap: 0.5rem; /* Reduced gap between buttons */
+        margin-top: 0.75rem; /* Reduced top margin */
     }
 
     .btn-primary, .btn-secondary {
-        padding: 0.875rem 2rem;
-        font-size: 0.95rem;
+        padding: 0.75rem 1.75rem; /* Slightly smaller padding */
+        font-size: 0.9rem;
         max-width: 200px;
     }
 }
@@ -68,16 +71,16 @@
 /* Tablet adjustments */
 @media (min-width: 768px) and (max-width: 1023px) {
     .luxury-hero {
-        min-height: 100vh;
-        padding: 4rem 0;
+        min-height: 65vh; /* Further reduced for tighter spacing */
+        padding: 2.5rem 0;
     }
 }
 
 /* Desktop adjustments */
 @media (min-width: 1024px) {
     .luxury-hero {
-        min-height: 100vh;
-        padding: 6rem 0;
+        min-height: 75vh; /* Reduced for tighter desktop layout */
+        padding: 3rem 0; /* Reduced padding */
     }
 }
 
@@ -126,14 +129,6 @@
         --glass-border: rgba(255, 255, 255, 0.18);
     }
 
-    /* Hero Section - Updated to fit content instead of full screen */
-    .luxury-hero {
-        position: relative;
-        padding: 6 0 4rem;
-        background: var(--primary-gradient);
-        overflow: hidden;
-    }
-
     .hero-bg-overlay {
         position: absolute;
         inset: 0;
@@ -161,7 +156,7 @@
     }
 
     .hero-title {
-        font-size: clamp(2.5rem, 8vw, 6rem);
+        font-size: clamp(2.2rem, 6vw, 4.5rem); /* Slightly reduced max size for tighter layout */
         font-weight: 900;
         background: linear-gradient(135deg, #ffffff, #f8fafc, #e2e8f0);
         -webkit-background-clip: text;
@@ -169,7 +164,7 @@
         background-clip: text;
         text-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
         line-height: 1.1;
-        margin-bottom: 1.5rem;
+        margin-bottom: 1.25rem; /* Reduced margin for tighter spacing */
     }
 
     .highlight-text {
@@ -181,11 +176,11 @@
     }
 
     .hero-subtitle {
-        font-size: clamp(1.1rem, 3vw, 1.4rem);
+        font-size: clamp(1rem, 2.8vw, 1.25rem); /* Slightly reduced for tighter layout */
         color: rgba(255, 255, 255, 0.9);
         text-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
         line-height: 1.6;
-        margin-bottom: 3rem;
+        margin-bottom: 2rem; /* Reduced margin for tighter spacing */
     }
 
     .hero-buttons {
@@ -203,25 +198,8 @@
     }
 
     @media (min-width: 768px) {
-        .luxury-hero {
-            padding: 8rem 0 6rem;
-        }
-
         .hero-buttons {
             justify-content: flex-start;
-        }
-    }
-
-    @media (min-width: 1024px) {
-        .luxury-hero {
-            padding: 10rem 0 8rem;
-        }
-    }
-
-    /* Mobile responsive */
-    @media (max-width: 767px) {
-        .luxury-hero {
-            padding: 4rem 0 3rem;
         }
     }
 
@@ -669,7 +647,7 @@
         <div class="hero-particles"></div>
 
         <div class="container mx-auto px-6 relative z-10 max-w-7xl">
-            <div class="grid md:grid-cols-2 gap-12 items-center py-8">
+            <div class="grid md:grid-cols-2 gap-8 items-center py-6">
                 <!-- Content Column -->
                 <div class="text-center md:text-left text-white">
                     <h1 class="hero-title">
@@ -693,7 +671,7 @@
                 <div class="hidden md:flex justify-center">
                     <img src="{{ asset('images/siswa-siswi.png') }}"
                          alt="Karakter Siswa SMK"
-                         class="hero-character max-w-sm lg:max-w-md">
+                         class="hero-character max-w-lg lg:max-w-xl">
                 </div>
             </div>
         </div>
