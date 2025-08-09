@@ -79,10 +79,10 @@
                     <i class="fas fa-users fa-fw mr-3"></i> Pengurus OSIS
                 </a>
                 <a href="#" class="mt-2 flex items-center px-4 py-2.5 rounded-lg transition duration-200 hover:bg-indigo-700">
-                    <i class="fas fa-users-cog fa-fw mr-3"></i> Manajemen User
+                    <i class="fas fa-users-cog fa-fw mr-3"></i> Manajemen User (Coming Soon)
                 </a>
                 <a href="#" class="mt-2 flex items-center px-4 py-2.5 rounded-lg transition duration-200 hover:bg-indigo-700">
-                    <i class="fas fa-chart-line fa-fw mr-3"></i> Laporan
+                    <i class="fas fa-chart-line fa-fw mr-3"></i> Laporan (Coming Soon)
                 </a>
             </nav>
         </aside>

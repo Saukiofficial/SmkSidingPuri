@@ -54,8 +54,53 @@
         transform: scale(1.1);
     }
 
+    /* FIXED: Card Image Styling */
     .card-image {
+        opacity: 1 !important; /* Force opacity to 1 */
         transition: transform 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    /* Image Container */
+    .image-container {
+        position: relative;
+        width: 100%;
+        height: 16rem; /* 64 * 0.25rem = 16rem */
+        overflow: hidden;
+        background: rgba(255, 255, 255, 0.05);
+    }
+
+    @media (min-width: 768px) {
+        .image-container {
+            height: 18rem; /* 72 * 0.25rem = 18rem */
+        }
+    }
+
+    /* Loading Placeholder */
+    .image-placeholder {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(45deg, rgba(255,255,255,0.1) 25%, transparent 25%),
+                    linear-gradient(-45deg, rgba(255,255,255,0.1) 25%, transparent 25%),
+                    linear-gradient(45deg, transparent 75%, rgba(255,255,255,0.1) 75%),
+                    linear-gradient(-45deg, transparent 75%, rgba(255,255,255,0.1) 75%);
+        background-size: 20px 20px;
+        background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+
+    .image-placeholder.show {
+        opacity: 1;
     }
 
     /* Gradient Text */
@@ -151,6 +196,48 @@
         @apply text-white font-bold;
         background: linear-gradient(135deg, #667eea, #764ba2);
     }
+
+    /* Touch Active State */
+    .touch-active {
+        transform: scale(0.98) !important;
+        transition: transform 0.2s ease;
+    }
+
+    /* Enhanced mobile responsiveness */
+    @media (max-width: 640px) {
+        .luxury-gradient {
+            padding: 1rem 0;
+        }
+
+        .gradient-text {
+            font-size: 2.5rem;
+            line-height: 1.1;
+        }
+
+        .card-3d {
+            margin-bottom: 1rem;
+        }
+
+        .glass-card {
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+        }
+    }
+
+    /* Improved accessibility */
+    @media (prefers-reduced-motion: reduce) {
+        .card-3d,
+        .card-image,
+        .particle {
+            animation: none !important;
+            transition: none !important;
+        }
+
+        .luxury-gradient {
+            animation: none;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+    }
 </style>
 @endpush
 
@@ -186,11 +273,26 @@
                     {{-- Link ke halaman detail album --}}
                     <a href="#" class="block">
                         <div class="relative group">
-                            <div class="overflow-hidden">
+                            <!-- FIXED: Image Container with proper structure -->
+                            <div class="image-container">
                                 <img src="{{ $album->galleries->first() ? asset('storage/' . $album->galleries->first()->file_path) : 'https://placehold.co/600x400/e2e8f0/6366f1?text=No+Image' }}"
                                      alt="{{ $album->name }}"
-                                     class="w-full h-64 md:h-72 object-cover card-image">
+                                     class="card-image"
+                                     loading="lazy"
+                                     onload="this.parentElement.querySelector('.image-placeholder').classList.remove('show')"
+                                     onerror="this.parentElement.querySelector('.image-placeholder').classList.add('show'); this.style.display='none';">
+
+                                <!-- Loading/Error Placeholder -->
+                                <div class="image-placeholder">
+                                    <div class="text-center">
+                                        <svg class="w-12 h-12 text-white/30 mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                                        </svg>
+                                        <span class="text-white/40 text-sm">Memuat gambar...</span>
+                                    </div>
+                                </div>
                             </div>
+
                             <!-- Hover Overlay -->
                             <div class="absolute inset-0 hover-overlay flex items-center justify-center">
                                 <div class="text-center">
@@ -243,7 +345,7 @@
 
 @push('scripts')
 <script>
-    // Add loading animation and smooth interactions
+    // SIMPLIFIED: Add loading animation and smooth interactions
     document.addEventListener('DOMContentLoaded', function() {
         // Initialize cards with fade-in animation
         const cards = document.querySelectorAll('.card-3d');
@@ -279,17 +381,43 @@
             observer.observe(element);
         });
 
-        // Add loading state for images
+        // FIXED: Simplified image handling
         const images = document.querySelectorAll('.card-image');
-        images.forEach(img => {
+        images.forEach((img, index) => {
+            // Show placeholder initially for slow loading images
+            const placeholder = img.parentElement.querySelector('.image-placeholder');
+            if (placeholder) {
+                placeholder.classList.add('show');
+            }
+
+            // Handle successful image load
             img.addEventListener('load', function() {
-                this.style.opacity = '1';
+                if (placeholder) {
+                    placeholder.classList.remove('show');
+                }
             });
 
+            // Handle image load error
             img.addEventListener('error', function() {
-                this.style.opacity = '0.5';
-                this.parentElement.innerHTML += '<div class="absolute inset-0 flex items-center justify-center bg-white/10"><span class="text-white/60">Gambar tidak tersedia</span></div>';
+                console.warn('Failed to load image:', this.src);
+                if (placeholder) {
+                    placeholder.classList.add('show');
+                    placeholder.innerHTML = `
+                        <div class="text-center">
+                            <svg class="w-12 h-12 text-white/30 mb-2 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.732-.833-2.464 0L4.35 16.5c-.77.833.192 2.5 1.732 2.5z"></path>
+                            </svg>
+                            <span class="text-white/40 text-sm">Gambar tidak tersedia</span>
+                        </div>
+                    `;
+                }
+                this.style.display = 'none';
             });
+
+            // Force check if image is already loaded (cached)
+            if (img.complete) {
+                img.dispatchEvent(new Event('load'));
+            }
         });
 
         // Enhanced hover effects for mobile
@@ -313,58 +441,5 @@
         document.documentElement.style.setProperty('--animation-duration', '0.3s');
     }
 </script>
-
-<style>
-    .touch-active {
-        transform: scale(0.98) !important;
-        transition: transform 0.2s ease;
-    }
-
-    /* Loading state for images */
-    .card-image {
-        opacity: 0;
-        transition: opacity 0.3s ease;
-    }
-
-    .card-image.loaded {
-        opacity: 1;
-    }
-
-    /* Enhanced mobile responsiveness */
-    @media (max-width: 640px) {
-        .luxury-gradient {
-            padding: 1rem 0;
-        }
-
-        .gradient-text {
-            font-size: 2.5rem;
-            line-height: 1.1;
-        }
-
-        .card-3d {
-            margin-bottom: 1rem;
-        }
-
-        .glass-card {
-            backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
-        }
-    }
-
-    /* Improved accessibility */
-    @media (prefers-reduced-motion: reduce) {
-        .card-3d,
-        .card-image,
-        .particle {
-            animation: none !important;
-            transition: none !important;
-        }
-
-        .luxury-gradient {
-            animation: none;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        }
-    }
-</style>
 @endpush
 @endsection

@@ -4,6 +4,120 @@
 
 @push('styles')
 <style>
+    html, body {
+    height: 100%;
+    overflow-x: hidden;
+}
+
+/* Hero Section - Mobile Full Height Fix */
+.luxury-hero {
+    position: relative;
+    min-height: 100vh; /* Gunakan min-height 100vh untuk mobile */
+    min-height: 100dvh; /* Dynamic viewport height untuk mobile modern */
+    padding: 0; /* Reset padding untuk mobile */
+    background: var(--primary-gradient);
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+}
+
+/* Mobile specific adjustments */
+@media (max-width: 767px) {
+    .luxury-hero {
+        min-height: 100vh;
+        min-height: 100dvh; /* Dynamic viewport height */
+        padding: 2rem 0; /* Minimal padding */
+    }
+
+    /* Ensure content is vertically centered */
+    .luxury-hero .container {
+        display: flex;
+        align-items: center;
+        min-height: 100vh;
+        min-height: 100dvh;
+    }
+
+    .luxury-hero .grid {
+        width: 100%;
+        align-items: center;
+    }
+
+    /* Adjust hero title for mobile */
+    .hero-title {
+        font-size: clamp(2rem, 10vw, 4rem);
+        margin-bottom: 1rem;
+    }
+
+    .hero-subtitle {
+        font-size: clamp(1rem, 4vw, 1.2rem);
+        margin-bottom: 2rem;
+    }
+
+    /* Button adjustments for mobile */
+    .hero-buttons {
+        gap: 0.75rem;
+    }
+
+    .btn-primary, .btn-secondary {
+        padding: 0.875rem 2rem;
+        font-size: 0.95rem;
+        max-width: 200px;
+    }
+}
+
+/* Tablet adjustments */
+@media (min-width: 768px) and (max-width: 1023px) {
+    .luxury-hero {
+        min-height: 100vh;
+        padding: 4rem 0;
+    }
+}
+
+/* Desktop adjustments */
+@media (min-width: 1024px) {
+    .luxury-hero {
+        min-height: 100vh;
+        padding: 6rem 0;
+    }
+}
+
+/* Fix untuk browser mobile yang memiliki masalah dengan 100vh */
+@supports (-webkit-touch-callout: none) {
+    .luxury-hero {
+        min-height: -webkit-fill-available;
+    }
+}
+
+/* Additional mobile optimizations */
+@media (max-width: 767px) {
+    /* Ensure no horizontal scroll */
+    .container {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+
+    /* Hide character image on very small screens if needed */
+    .hero-character {
+        display: none;
+    }
+
+    /* Make sure text is readable */
+    .hero-title, .hero-subtitle {
+        text-align: center;
+    }
+
+    /* Optimize button layout */
+    .hero-buttons {
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+    }
+
+    .btn-primary, .btn-secondary {
+        width: 100%;
+        max-width: 250px;
+    }
+}
     /* Global Luxury Variables */
     :root {
         --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
@@ -384,25 +498,22 @@
     }
 
     /* Testimonial Section */
-    .testimonial-section {
-        background: var(--secondary-gradient);
+        /* Additional CSS for horizontal testimonials */
+    .testimonial-container {
+        max-width: 100%;
+    }
+
+    .testimonial-slider {
         position: relative;
-        overflow: hidden;
     }
 
-    .testimonial-section::before {
-        content: '';
-        position: absolute;
-        inset: 0;
-        background-image:
-            radial-gradient(circle at 30% 30%, rgba(255,255,255,0.1) 0%, transparent 50%),
-            radial-gradient(circle at 70% 70%, rgba(255,255,255,0.05) 0%, transparent 50%);
-        animation: testimonialFloat 15s ease-in-out infinite;
+    .testimonial-track {
+        display: flex;
+        will-change: transform;
     }
 
-    @keyframes testimonialFloat {
-        0%, 100% { transform: translate(0, 0) scale(1); }
-        50% { transform: translate(-10px, -10px) scale(1.05); }
+    .testimonial-item {
+        flex: 0 0 auto;
     }
 
     .testimonial-card {
@@ -414,22 +525,68 @@
         position: relative;
         overflow: hidden;
         box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+        height: auto;
+        min-height: 300px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
     }
 
-    .testimonial-card::before {
-        content: '';
-        position: absolute;
-        top: -50%;
-        left: -50%;
-        width: 200%;
-        height: 200%;
-        background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
-        animation: shimmer 4s ease-in-out infinite;
+    .nav-btn {
+        cursor: pointer;
+        transition: all 0.3s ease;
+        user-select: none;
     }
 
-    @keyframes shimmer {
-        0%, 100% { transform: rotate(0deg) scale(1); opacity: 0.3; }
-        50% { transform: rotate(180deg) scale(1.1); opacity: 0.7; }
+    .nav-btn:hover {
+        transform: scale(1.1);
+    }
+
+    .nav-btn:disabled {
+        opacity: 0.3;
+        cursor: not-allowed;
+    }
+
+    .nav-btn:disabled:hover {
+        transform: none;
+    }
+
+    .dot-indicator {
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    .dot-indicator.active {
+        background: rgba(255, 255, 255, 0.8);
+        transform: scale(1.2);
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+        .testimonial-container .nav-btn {
+            display: none;
+        }
+
+        .testimonial-slider {
+            margin: 0 1rem;
+        }
+
+        .testimonial-card {
+            padding: 2rem;
+            min-height: 250px;
+        }
+    }
+
+    @media (min-width: 768px) {
+        .testimonial-item {
+            min-width: 500px;
+        }
+    }
+
+    @media (min-width: 1024px) {
+        .testimonial-item {
+            min-width: 600px;
+        }
     }
 
     /* Section Headers */
@@ -708,7 +865,7 @@
         </div>
     </section>
 
-    <!-- Section Testimoni Alumni -->
+    {{--  <!-- Section Testimoni Alumni -->
     <section class="testimonial-section py-24 text-white">
         <div class="container mx-auto px-6 text-center">
             <span class="bg-white/10 font-semibold px-4 py-1 rounded-full text-sm">Testimoni Alumni</span>
@@ -727,8 +884,21 @@
                     </div>
                 </div>
             </div>
+                <div class="mt-12 max-w-2xl mx-auto bg-white/10 backdrop-blur-lg p-8 rounded-2xl">
+                <div class="text-yellow-400 text-2xl">
+                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                </div>
+                <p class="mt-4 text-lg italic">"SMK Siding Puri memberikan saya fondasi yang kuat dalam bidang IT. Sekarang saya Membangun Startup Sendiri dengan nama KyySolutions. Dengan Pengalaman dan Dedikasi yang tinggi dari Guru Guru Disana Sehingga saya bisa berada di posisi yang sekarang, Terima Kasih SMK Siding Puri."</p>
+                <div class="mt-6 flex items-center justify-center">
+                    <div class="bg-pink-500 w-12 h-12 rounded-full flex items-center justify-center font-bold text-xl mr-4">R</div>
+                    <div>
+                        <p class="font-bold">Fauzi</p>
+                        <p class="text-sm text-indigo-200">Alumni TKJ 2011 - Owner Icon Service</p>
+                    </div>
+                </div>
+            </div>
         </div>
-    </section>
+    </section>  --}}
 
 @endsection
 
