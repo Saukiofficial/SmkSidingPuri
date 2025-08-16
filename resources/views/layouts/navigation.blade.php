@@ -5,7 +5,7 @@
             <div class="flex">
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
-                    {{-- Arahkan logo ke halaman home --}}
+          
                     <a href="{{ route('home') }}">
                         <x-application-logo class="block h-9 w-auto fill-current text-gray-800" />
                     </a>
@@ -13,13 +13,13 @@
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    {{-- Tampilkan link dashboard hanya jika user login --}}
+               
                     @auth
                         <x-nav-link :href="route('dashboard.user')" :active="request()->routeIs('dashboard.user')">
                             {{ __('Dashboard') }}
                         </x-nav-link>
                     @endauth
-                    {{-- Anda bisa menambahkan link publik di sini jika mau --}}
+                   
                     <x-nav-link :href="route('home')" :active="request()->routeIs('home')">
                         {{ __('Home') }}
                     </x-nav-link>

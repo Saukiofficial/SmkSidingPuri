@@ -311,7 +311,6 @@
                 </div>
                 @endforeach
             </div>
-
             <div class="h-16 line-connector mb-8"></div>
 
             <!-- Koordinator Seksi Bidang -->

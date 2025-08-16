@@ -6,6 +6,10 @@ use App\Http\Controllers\Controller;
 use App\Models\Alumnus;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+// Impor class yang baru kita buat dan pustaka Excel
+use App\Exports\AlumniTemplateExport;
+use App\Imports\AlumniImport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class AlumniController extends Controller
 {
@@ -92,5 +96,30 @@ class AlumniController extends Controller
         $alumnus->delete();
 
         return redirect()->route('admin.alumni.index')->with('success', 'Data alumni berhasil dihapus.');
+    }
+
+    /**
+     * FUNGSI BARU: Untuk mengunduh template Excel.
+     */
+    public function downloadTemplate()
+    {
+        return Excel::download(new AlumniTemplateExport, 'template_alumni.xlsx');
+    }
+
+    /**
+     * FUNGSI BARU: Untuk mengimpor data dari file Excel.
+     */
+    public function import(Request $request)
+    {
+        $request->validate([
+            'file' => 'required|mimes:xlsx,xls',
+        ]);
+
+        try {
+            Excel::import(new AlumniImport, $request->file('file'));
+            return redirect()->route('admin.alumni.index')->with('success', 'Data alumni berhasil diimpor.');
+        } catch (\Exception $e) {
+            return redirect()->route('admin.alumni.index')->with('error', 'Terjadi kesalahan saat mengimpor data: ' . $e->getMessage());
+        }
     }
 }

@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('title');
             $table->string('slug')->unique();
             $table->longText('content');
-            $table->string('featured_image_path', 2048)->nullable();
+            $table->string('featured_image_path', 5048)->nullable();
             $table->enum('type', ['news', 'announcement'])->default('news');
             $table->enum('status', ['published', 'draft'])->default('draft');
             $table->timestamp('published_at')->nullable();

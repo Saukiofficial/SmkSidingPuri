@@ -21,15 +21,21 @@ class AdmissionController extends Controller
      */
     public function store(Request $request)
     {
+        // Validasi untuk semua field di form yang lengkap
         $request->validate([
             'full_name' => 'required|string|max:255',
-            'gender' => 'required|in:male,female',
+            'nisn' => 'nullable|string|max:20',
             'birth_place' => 'required|string|max:255',
             'birth_date' => 'required|date',
+            'gender' => 'required|in:male,female',
+            'religion' => 'nullable|string|max:50',
             'previous_school' => 'required|string|max:255',
+            'address' => 'required|string',
             'father_name' => 'required|string|max:255',
             'mother_name' => 'required|string|max:255',
-            'address' => 'required|string',
+            'father_occupation' => 'nullable|string|max:255',
+            'mother_occupation' => 'nullable|string|max:255',
+            'jurusan_pilihan' => 'required|string|max:255',
             'photo' => 'required|image|mimes:jpeg,png,jpg|max:2048',
             'document_birth_certificate' => 'nullable|file|mimes:pdf,jpg,png|max:2048',
             'document_family_card' => 'nullable|file|mimes:pdf,jpg,png|max:2048',
@@ -39,7 +45,7 @@ class AdmissionController extends Controller
         ]);
 
         // Simpan data utama pendaftar
-        $admission = Admission::create($request->except('documents', 'photo', 'agreement') + [
+        $admission = Admission::create($request->all() + [
             'registration_number' => 'PPDB-' . date('Y') . '-' . Str::upper(Str::random(6)),
         ]);
 

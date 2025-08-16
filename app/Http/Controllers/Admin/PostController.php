@@ -38,7 +38,7 @@ class PostController extends Controller
             'content' => 'required|string',
             'type' => 'required|in:news,announcement',
             'status' => 'required|in:published,draft',
-            'featured_image_path' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'featured_image_path' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:20000',
         ]);
 
         $path = null;

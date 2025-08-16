@@ -13,16 +13,37 @@
         .form-input::placeholder {
             color: rgba(255, 255, 255, 0.6);
         }
+        .logo-animation {
+            animation: float 3s ease-in-out infinite;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-8px); }
+        }
+
+        /* Background overlay */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: -1;
+        }
     </style>
 </head>
-<body class="bg-gradient-to-br from-indigo-600 to-purple-700 font-inter text-white min-h-screen flex items-center justify-center p-4">
+<body class="font-inter text-white min-h-screen flex items-center justify-center p-4 relative"
+      style="background-image: url('{{ asset('images/gedung-sekolah2.png') }}'); background-size: cover; background-position: center; background-attachment: fixed;">
 
     <div class="w-full max-w-md">
-        <div class="bg-white/10 backdrop-blur-lg rounded-2xl shadow-2xl p-8">
+        <div class="bg-white/15 backdrop-blur-lg rounded-2xl shadow-2xl p-8 border border-white/20">
 
             <div class="text-center mb-8">
-                <div class="text-6xl mb-4">
-                    🏫
+                <!-- Logo SMK Siding Puri -->
+                <div class="mb-4 flex justify-center logo-animation">
+                    <img src="{{ asset('images/logo.png') }}" alt="Logo SMK Siding Puri" class="w-20 h-20 object-contain">
                 </div>
                 <h1 class="text-3xl font-bold">Login Admin</h1>
                 <p class="text-indigo-200">SMK Siding Puri</p>

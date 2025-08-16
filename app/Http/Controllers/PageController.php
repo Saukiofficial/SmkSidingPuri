@@ -28,6 +28,11 @@ public function osis()
     $osisMembers = \App\Models\OsisMember::orderBy('display_order')->get();
     return view('pages.frontend.osis', compact('osisMembers'));
 }
+public function alumniBoard()
+{
+    $alumniBoards = \App\Models\AlumniBoard::orderBy('display_order')->get();
+    return view('pages.frontend.alumni-board', compact('alumniBoards'));
+}
 
     public function history()
     {

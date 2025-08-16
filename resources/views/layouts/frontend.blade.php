@@ -236,18 +236,13 @@
 </head>
 <body class="bg-gray-50 font-inter text-gray-800">
 
-    {{-- Memasukkan komponen Header Publik --}}
     @include('layouts.partials.header')
-
-    {{-- Konten Utama Halaman --}}
     <main>
         @yield('content')
     </main>
-
-    {{-- Memasukkan komponen Footer Publik --}}
     @include('layouts.partials.footer')
 
-    {{-- JAVASCRIPT FIXES UNTUK MOBILE --}}
+    {{-- JS FIXES MOBILE --}}
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             // Detect iOS

@@ -16,6 +16,7 @@ class Admission extends Model
         'birth_place',
         'birth_date',
         'previous_school',
+        'jurusan_pilihan',
         'father_name',
         'mother_name',
         'address',

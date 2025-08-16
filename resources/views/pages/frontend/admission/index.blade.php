@@ -61,19 +61,6 @@
         content: ' *';
         color: #e74c3c;
     }
-    .file-upload {
-        border: 2px dashed #4facfe;
-        border-radius: 10px;
-        padding: 20px;
-        text-align: center;
-        background: rgba(79, 172, 254, 0.05);
-        cursor: pointer;
-        transition: all 0.3s ease;
-    }
-    .file-upload:hover {
-        background: rgba(79, 172, 254, 0.1);
-        border-color: #00f2fe;
-    }
     .photo-preview {
         width: 150px;
         height: 150px;
@@ -108,7 +95,9 @@
                 </div>
 
                 <form id="registrationForm" action="{{ route('admission.store') }}" method="POST" enctype="multipart/form-data">
+                    {{-- PASTIKAN BARIS INI ADA --}}
                     @csrf
+
                     {{-- Notifikasi --}}
                     @if (session('success'))
                         <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded-lg relative mb-6" role="alert">
@@ -135,7 +124,7 @@
                                 <label for="full_name" class="block font-medium text-gray-700 mb-1 required">Nama Lengkap</label>
                                 <input type="text" name="full_name" id="full_name" value="{{ old('full_name') }}" class="w-full px-4 py-2 border border-slate-300 rounded-lg" required>
                             </div>
-                            <div>
+                             <div>
                                 <label for="nisn" class="block font-medium text-gray-700 mb-1">NISN</label>
                                 <input type="text" name="nisn" id="nisn" value="{{ old('nisn') }}" class="w-full px-4 py-2 border border-slate-300 rounded-lg">
                             </div>
@@ -155,9 +144,33 @@
                                     <option value="female" @if(old('gender') == 'female') selected @endif>Perempuan</option>
                                 </select>
                             </div>
-                            <div class="md:col-span-2">
+                             <div>
+                                <label for="religion" class="block font-medium text-gray-700 mb-1 required">Agama</label>
+                                <select name="religion" id="religion" class="w-full px-4 py-2 border border-slate-300 rounded-lg" required>
+                                     <option value="">Pilih Agama</option>
+                                     <option value="Islam">Islam</option>
+                                     <option value="Kristen">Kristen</option>
+                                     <option value="Katolik">Katolik</option>
+                                     <option value="Hindu">Hindu</option>
+                                     <option value="Buddha">Buddha</option>
+                                     <option value="Konghucu">Konghucu</option>
+                                </select>
+                            </div>
+                             <div class="md:col-span-2">
                                 <label for="previous_school" class="block font-medium text-gray-700 mb-1 required">Asal Sekolah (SMP/MTs)</label>
                                 <input type="text" name="previous_school" id="previous_school" value="{{ old('previous_school') }}" class="w-full px-4 py-2 border border-slate-300 rounded-lg" required>
+                            </div>
+                            <div class="md:col-span-2">
+                                <label for="jurusan_pilihan" class="block font-medium text-gray-700 mb-1 required">Pemilihan Jurusan</label>
+                                <select name="jurusan_pilihan" id="jurusan_pilihan" class="w-full px-4 py-2 border border-slate-300 rounded-lg" required>
+                                    <option value="">-- Pilih Jurusan --</option>
+                                    <option value="TKJ (TEKNIK KOMPUTER & JARINGAN)" @if(old('jurusan_pilihan') == 'TKJ (TEKNIK KOMPUTER & JARINGAN)') selected @endif>
+                                        TKJ (TEKNIK KOMPUTER & JARINGAN)
+                                    </option>
+                                    <option value="ATPH (Agribisnis Tanaman Pangan dan Hortikultura)" @if(old('jurusan_pilihan') == 'ATPH (Agribisnis Tanaman Pangan dan Hortikultura)') selected @endif>
+                                        ATPH (Agribisnis Tanaman Pangan dan Hortikultura)
+                                    </option>
+                                </select>
                             </div>
                             <div class="md:col-span-2">
                                 <label for="address" class="block font-medium text-gray-700 mb-1 required">Alamat Lengkap</label>
@@ -178,39 +191,47 @@
                                 <label for="mother_name" class="block font-medium text-gray-700 mb-1 required">Nama Ibu</label>
                                 <input type="text" name="mother_name" id="mother_name" value="{{ old('mother_name') }}" class="w-full px-4 py-2 border border-slate-300 rounded-lg" required>
                             </div>
+                             <div>
+                                <label for="father_occupation" class="block font-medium text-gray-700 mb-1">Pekerjaan Ayah</label>
+                                <input type="text" name="father_occupation" id="father_occupation" value="{{ old('father_occupation') }}" class="w-full px-4 py-2 border border-slate-300 rounded-lg">
+                            </div>
+                             <div>
+                                <label for="mother_occupation" class="block font-medium text-gray-700 mb-1">Pekerjaan Ibu</label>
+                                <input type="text" name="mother_occupation" id="mother_occupation" value="{{ old('mother_occupation') }}" class="w-full px-4 py-2 border border-slate-300 rounded-lg">
+                            </div>
                         </div>
                     </div>
 
                     <!-- Foto dan Upload Berkas -->
                     <div class="mb-8">
-    <h2 class="section-title"><span class="text-2xl">📸</span> Foto dan Upload Berkas</h2>
-    <div class="text-center mb-6">
-        <label class="block font-medium text-gray-700 mb-2 required">Foto Siswa</label>
-        <div class="photo-preview" id="photoPreview">
-            <div class="photo-placeholder">📷</div>
-        </div>
-        <input type="file" id="photo" name="photo" accept="image/*" class="hidden" required>
-        <button type="button" onclick="document.getElementById('photo').click()" class="bg-indigo-500 text-white text-sm font-semibold py-2 px-4 rounded-lg hover:bg-indigo-600">Pilih Foto</button>
-    </div>
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-4">
-        <div>
-            <label class="block font-medium text-gray-700 mb-1 required">Akta Kelahiran</label>
-            <input type="file" name="document_birth_certificate" class="w-full text-sm text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:font-semibold file:bg-indigo-50 file:text-indigo-700 hover:file:bg-indigo-100" required>
-        </div>
-        <div>
-            <label class="block font-medium text-gray-700 mb-1 required">Kartu Keluarga</label>
-            <input type="file" name="document_family_card" class="w-full text-sm text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:font-semibold file:bg-indigo-50 file:text-indigo-700 hover:file:bg-indigo-100" required>
-        </div>
-            <div>
-            <label class="block font-medium text-gray-700 mb-1 required">Ijazah/SKHUN</label>
-            <input type="file" name="document_ijazah" class="w-full text-sm text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:font-semibold file:bg-indigo-50 file:text-indigo-700 hover:file:bg-indigo-100" required>
-        </div>
-            <div>
-            <label class="block font-medium text-gray-700 mb-1 required">Raport Semester Terakhir</label>
-            <input type="file" name="document_raport" class="w-full text-sm text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:font-semibold file:bg-indigo-50 file:text-indigo-700 hover:file:bg-indigo-100" required>
-        </div>
-    </div>
-</div>
+                        <h2 class="section-title"><span class="text-2xl">📸</span> Foto dan Upload Berkas</h2>
+                        <div class="text-center mb-6">
+                            <label class="block font-medium text-gray-700 mb-2 required">Foto Siswa</label>
+                            <div class="photo-preview" id="photoPreview">
+                                <div class="photo-placeholder">📷</div>
+                            </div>
+                            <input type="file" id="photo" name="photo" accept="image/*" class="hidden" required>
+                            <button type="button" onclick="document.getElementById('photo').click()" class="bg-indigo-500 text-white text-sm font-semibold py-2 px-4 rounded-lg hover:bg-indigo-600">Pilih Foto</button>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-4">
+                            <div>
+                                <label class="block font-medium text-gray-700 mb-1">Akta Kelahiran</label>
+                                <input type="file" name="document_birth_certificate" class="w-full text-sm text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:font-semibold file:bg-indigo-50 file:text-indigo-700 hover:file:bg-indigo-100">
+                            </div>
+                            <div>
+                                <label class="block font-medium text-gray-700 mb-1">Kartu Keluarga</label>
+                                <input type="file" name="document_family_card" class="w-full text-sm text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:font-semibold file:bg-indigo-50 file:text-indigo-700 hover:file:bg-indigo-100">
+                            </div>
+                             <div>
+                                <label class="block font-medium text-gray-700 mb-1">Ijazah/SKHUN</label>
+                                <input type="file" name="document_ijazah" class="w-full text-sm text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:font-semibold file:bg-indigo-50 file:text-indigo-700 hover:file:bg-indigo-100">
+                            </div>
+                             <div>
+                                <label class="block font-medium text-gray-700 mb-1">Raport Semester Terakhir</label>
+                                <input type="file" name="document_raport" class="w-full text-sm text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:font-semibold file:bg-indigo-50 file:text-indigo-700 hover:file:bg-indigo-100">
+                            </div>
+                        </div>
+                    </div>
 
                     <!-- Persetujuan -->
                      <div class="mb-8">

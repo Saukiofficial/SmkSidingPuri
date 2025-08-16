@@ -9,6 +9,14 @@
             <h2 class="text-2xl font-bold text-gray-800">{{ $admission->full_name }}</h2>
             <p class="font-mono text-gray-500">{{ $admission->registration_number }}</p>
         </div>
+                <div class="flex gap-2">
+
+            <a href="{{ route('admin.ppdb.download', $admission->id) }}" class="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-lg text-sm">
+                <i class="fas fa-file-pdf mr-2"></i> Unduh Formulir
+            </a>
+            <a href="{{ route('admin.ppdb.index') }}" class="text-indigo-600 hover:underline font-semibold">&larr; Kembali ke Daftar</a>
+        </div>
+    </div>
         <a href="{{ route('admin.ppdb.index') }}" class="text-indigo-600 hover:underline font-semibold">&larr; Kembali ke Daftar</a>
     </div>
 
