@@ -307,7 +307,6 @@
                                 <tr>
                                     <th class="text-left py-4 px-6 font-semibold">Nama Lengkap</th>
                                     <th class="text-left py-4 px-6 font-semibold">Tahun Lulus</th>
-                                    <th class="text-left py-4 px-6 font-semibold">Pekerjaan / Profesi</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -329,10 +328,10 @@
                                                 @endif
                                             </div>
                                         </td>
-                                        <td class="py-4 px-6">
+                                        {{--  <td class="py-4 px-6">
                                             <span class="inline-flex items-center px-3 py-1 rounded-full text-sm bg-gradient-to-r from-blue-500/20 to-purple-500/20 text-white border border-white/20">
                                                 {{ $item->graduation_year }}
-                                            </span>
+                                            </span>  --}}
                                         </td>
                                         <td class="py-4 px-6">
                                             <span class="text-white/90">{{ $item->occupation ?? '-' }}</span>

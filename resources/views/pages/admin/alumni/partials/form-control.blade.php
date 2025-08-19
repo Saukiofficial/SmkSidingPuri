@@ -1,4 +1,4 @@
-partials/form-control.blade.php
+
 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
     <div>
         <label for="name" class="block text-gray-700 font-semibold mb-2">Nama Lengkap</label>
