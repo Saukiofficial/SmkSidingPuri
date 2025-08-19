@@ -707,7 +707,7 @@
             <div class="grid md:grid-cols-2 gap-12 items-center">
                 <div class="flex justify-center">
                     <div class="principal-card">
-                        <img src="{{ asset('images/kepalasekolah.png') }}"
+                        <img src="{{ asset('images/kepalasekolah.jpg') }}"
                              alt="Kepala Sekolah"
                              class="principal-image w-full max-w-sm">
                     </div>
