@@ -707,7 +707,7 @@
             <div class="grid md:grid-cols-2 gap-12 items-center">
                 <div class="flex justify-center">
                     <div class="principal-card">
-                        <img src="{{ asset('images/kepalasekolah.png') }}"
+                        <img src="{{ asset('images/kepalasekolah.jpg') }}"
                              alt="Kepala Sekolah"
                              class="principal-image w-full max-w-sm">
                     </div>
@@ -719,7 +719,7 @@
                         "SMK Siding Puri berkomitmen menciptakan generasi yang tidak hanya unggul secara akademik, tetapi juga berkarakter mulia. Kami mempersiapkan siswa dengan keterampilan abad 21, jiwa entrepreneurship, dan nilai-nilai Pancasila yang kuat."
                     </p>
                     <div class="bg-white/10 backdrop-blur-lg p-6 rounded-xl border border-white/20">
-                        <p class="font-bold text-white text-xl">Drs. Abu Rizal Bakri, S.Kom M.Kom</p>
+                        <p class="font-bold text-white text-xl">M. Syaiful Anwar, M.Pd., M.Ag.</p>
                         <p class="text-gray-300 mt-1">Kepala Sekolah SMK Siding Puri</p>
                     </div>
                 </div>

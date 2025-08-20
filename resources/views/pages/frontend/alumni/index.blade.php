@@ -328,17 +328,30 @@
                                                 @endif
                                             </div>
                                         </td>
+<<<<<<< HEAD
                                         <td class="py-4 px-6">
                                             <span class="inline-flex items-center px-3 py-1 rounded-full text-sm bg-gradient-to-r from-blue-500/20 to-purple-500/20 text-white border border-white/20">
                                                 {{ $item->graduation_year }}
                                             </span>
                                         </td>
                                         {{--  <td class="py-4 px-6">
+=======
+                                          <td class="py-4 px-6">
+                                            <span class="inline-flex items-center px-3 py-1 rounded-full text-sm bg-gradient-to-r from-blue-500/20 to-purple-500/20 text-white border border-white/20">
+                                                {{ $item->graduation_year }}
+                                            </span> 
+                                        </td>
+<!--                                         <td class="py-4 px-6">
+>>>>>>> fd657d528f7af3dffbe1b290185acc8574b521e6
                                             <span class="text-white/90">{{ $item->occupation ?? '-' }}</span>
                                             @if($item->company)
                                             <p class="text-xs text-white/50">di {{ $item->company }}</p>
                                             @endif
+<<<<<<< HEAD
                                         </td>  --}}
+=======
+                                        </td> -->
+>>>>>>> fd657d528f7af3dffbe1b290185acc8574b521e6
                                     </tr>
                                     @empty
                                     <tr>
