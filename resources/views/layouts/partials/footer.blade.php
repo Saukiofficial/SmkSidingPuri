@@ -1,6 +1,6 @@
-{{-- Footer Modern dengan Logo --}}
+
 <footer class="bg-gradient-to-br from-gray-900 via-gray-800 to-blue-900 text-white relative overflow-hidden">
-    {{-- Background Pattern --}}
+
     <div class="absolute inset-0 opacity-10">
         <div class="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-blue-600/20 to-transparent"></div>
         <div class="absolute -top-24 -right-24 w-96 h-96 bg-blue-500/10 rounded-full"></div>
@@ -9,9 +9,9 @@
 
     <div class="container mx-auto px-6 py-16 relative z-10">
         <div class="grid grid-cols-1 lg:grid-cols-4 gap-12">
-            {{-- Kolom Logo dan Tentang Sekolah --}}
+
             <div class="lg:col-span-2 space-y-6">
-                {{-- Logo dan Nama Sekolah --}}
+
                 <div class="flex items-center space-x-4 mb-6">
                     <div class="flex-shrink-0">
                         <img src="{{ asset('images/logo.png') }}" alt="SMK SIDING PURI Logo"
@@ -23,7 +23,7 @@
                     </div>
                 </div>
 
-                {{-- Deskripsi Sekolah --}}
+
                 <div class="bg-white/5 backdrop-blur-sm rounded-xl p-6 border border-white/10">
                     <h3 class="text-xl font-semibold mb-4 text-blue-300">Tentang Sekolah</h3>
                     <p class="text-gray-300 leading-relaxed mb-4">
@@ -37,7 +37,7 @@
                     </div>
                 </div>
 
-                {{-- Social Media dengan Efek Hover --}}
+
                 <div class="space-y-4">
                     <h4 class="text-lg font-semibold text-blue-300">Ikuti Kami</h4>
                     <div class="flex space-x-4">
@@ -77,7 +77,7 @@
                 </div>
             </div>
 
-            {{-- Kolom Tautan Cepat --}}
+
             <div class="space-y-6">
                 <div class="bg-white/5 backdrop-blur-sm rounded-xl p-6 border border-white/10 h-fit">
                     <h3 class="text-xl font-semibold mb-6 text-blue-300 flex items-center">
@@ -135,7 +135,7 @@
                 </div>
             </div>
 
-            {{-- Kolom Kontak --}}
+
             <div class="space-y-6">
                 <div class="bg-white/5 backdrop-blur-sm rounded-xl p-6 border border-white/10 h-fit">
                     <h3 class="text-xl font-semibold mb-6 text-blue-300 flex items-center">
@@ -197,7 +197,7 @@
         </div>
     </div>
 
-    {{-- Bottom Section --}}
+
     <div class="border-t border-white/10 bg-black/20 backdrop-blur-sm">
         <div class="container mx-auto px-6 py-6">
             <div class="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
@@ -219,10 +219,10 @@
     </div>
 </footer>
 
-{{-- Font Awesome untuk ikon --}}
+
 <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 
-{{-- Custom CSS untuk animasi tambahan --}}
+
 <style>
     @keyframes float {
         0%, 100% { transform: translateY(0px); }

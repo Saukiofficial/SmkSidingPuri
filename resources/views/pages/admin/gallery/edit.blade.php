@@ -6,7 +6,7 @@
 <div class="bg-white p-8 rounded-xl shadow-md">
     <h2 class="text-2xl font-bold text-gray-800 mb-6">Edit Album: {{ $album->name }}</h2>
 
-    {{-- Form untuk update detail album --}}
+
     <form action="{{ route('admin.galeri.update', $album->id) }}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('PUT')
@@ -27,7 +27,7 @@
         </div>
     </form>
 
-    {{-- Daftar Foto yang Sudah Ada --}}
+
     <div class="mt-10">
         <h3 class="text-xl font-bold text-gray-800 mb-4 border-t pt-6">Daftar Foto</h3>
         <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
@@ -35,7 +35,7 @@
                 <div class="relative group">
                     <img src="{{ asset('storage/' . $photo->file_path) }}" class="w-full h-32 object-cover rounded-lg">
                     <div class="absolute inset-0 bg-black/60 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-                        {{-- Form Hapus Foto --}}
+
                         <form action="#" method="POST">
                              @csrf
                              @method('DELETE')

@@ -10,17 +10,13 @@ use Illuminate\Validation\Rules\Password;
 
 class UserProfileController extends Controller
 {
-    /**
-     * Menampilkan halaman edit profil untuk admin yang sedang login.
-     */
+
     public function edit()
     {
         return view('pages.admin.profile.edit-self');
     }
 
-    /**
-     * Memperbarui profil admin yang sedang login.
-     */
+
     public function update(Request $request)
     {
         $user = auth()->user();
@@ -46,9 +42,7 @@ class UserProfileController extends Controller
         return redirect()->route('admin.my-profile.edit')->with('success', 'Profil berhasil diperbarui.');
     }
 
-    /**
-     * Memperbarui password admin yang sedang login.
-     */
+
     public function updatePassword(Request $request)
     {
         $user = auth()->user();

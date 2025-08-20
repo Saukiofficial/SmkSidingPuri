@@ -11,26 +11,20 @@ use Illuminate\Support\Str;
 
 class PostController extends Controller
 {
-    /**
-     * Menampilkan daftar semua post (berita & pengumuman).
-     */
+
     public function index()
     {
         $posts = Post::latest()->paginate(15);
         return view('pages.admin.posts.index', compact('posts'));
     }
 
-    /**
-     * Menampilkan form untuk membuat post baru.
-     */
+
     public function create()
     {
         return view('pages.admin.posts.create');
     }
 
-    /**
-     * Menyimpan post baru ke database.
-     */
+
     public function store(Request $request)
     {
         $request->validate([
@@ -60,17 +54,13 @@ class PostController extends Controller
         return redirect()->route('admin.berita.index')->with('success', 'Berita berhasil ditambahkan.');
     }
 
-    /**
-     * Menampilkan form untuk mengedit post.
-     */
+
     public function edit(Post $beritum)
     {
         return view('pages.admin.posts.edit', ['post' => $beritum]);
     }
 
-    /**
-     * Memperbarui post di database.
-     */
+
     public function update(Request $request, Post $beritum)
     {
         $request->validate([
@@ -83,7 +73,7 @@ class PostController extends Controller
 
         $path = $beritum->featured_image_path;
         if ($request->hasFile('featured_image_path')) {
-            // Hapus gambar lama jika ada
+           
             if ($path) {
                 Storage::disk('public')->delete($path);
             }
@@ -103,12 +93,10 @@ class PostController extends Controller
         return redirect()->route('admin.berita.index')->with('success', 'Berita berhasil diperbarui.');
     }
 
-    /**
-     * Menghapus post dari database.
-     */
+  
     public function destroy(Post $beritum)
     {
-        // Hapus gambar terkait dari storage
+  
         if ($beritum->featured_image_path) {
             Storage::disk('public')->delete($beritum->featured_image_path);
         }

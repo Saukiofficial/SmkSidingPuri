@@ -63,33 +63,25 @@ class AlumniBoardController extends Controller
         return redirect()->route('admin.pengurus-alumni.index')->with('success', 'Data berhasil diperbarui.');
     }
 
-    /**
-     * TINDAKAN PERBAIKAN:
-     * Mengubah metode destroy untuk menjadi lebih direct dan anti-gagal.
-     * 1. Menerima $id secara langsung, bukan model binding.
-     * 2. Mencari record terlebih dahulu untuk menghapus foto.
-     * 3. Menggunakan query builder `where('id', $id)->delete()` yang lebih direct ke database.
-     * Ini untuk menghindari kemungkinan adanya Model Event yang membatalkan penghapusan.
-     */
+
     public function destroy($id)
     {
-        // Cari record berdasarkan ID
+
         $pengurus_alumni = AlumniBoard::find($id);
 
-        // Jika record ditemukan
+
         if ($pengurus_alumni) {
-            // Hapus file foto dari storage jika ada
             if ($pengurus_alumni->photo_path) {
                 Storage::disk('public')->delete($pengurus_alumni->photo_path);
             }
 
-            // Hapus record dari database secara langsung menggunakan query
+
             AlumniBoard::where('id', $id)->delete();
 
             return redirect()->route('admin.pengurus-alumni.index')->with('success', 'Data berhasil dihapus.');
         }
 
-        // Jika record tidak ditemukan, kembalikan dengan pesan error
+
         return redirect()->route('admin.pengurus-alumni.index')->with('error', 'Data tidak ditemukan.');
     }
 }

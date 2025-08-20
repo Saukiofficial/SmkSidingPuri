@@ -34,25 +34,20 @@ class StudentController extends Controller
         // withQueryString() memastikan parameter filter tetap ada di link pagination
         $students = $query->latest()->paginate(20)->withQueryString();
 
-        // Data untuk dropdown filter
+
         $jurusans = Student::select('jurusan')->whereNotNull('jurusan')->distinct()->get();
         $classes = SchoolClass::all();
 
         return view('pages.admin.students.index', compact('students', 'jurusans', 'classes'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
         $classes = SchoolClass::all();
         return view('pages.admin.students.create', compact('classes'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
+
     public function store(Request $request)
     {
         $request->validate([
@@ -86,18 +81,14 @@ class StudentController extends Controller
         return redirect()->route('admin.data-siswa.index')->with('success', 'Data siswa berhasil ditambahkan.');
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
+
     public function edit(Student $data_siswa)
     {
         $classes = SchoolClass::all();
         return view('pages.admin.students.edit', ['student' => $data_siswa, 'classes' => $classes]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
+
     public function update(Request $request, Student $data_siswa)
     {
         $request->validate([
@@ -113,9 +104,7 @@ class StudentController extends Controller
         return redirect()->route('admin.data-siswa.index')->with('success', 'Data siswa berhasil diperbarui.');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
+
     public function destroy(Student $data_siswa)
     {
         $data_siswa->user()->delete();

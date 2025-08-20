@@ -1,6 +1,6 @@
 <?php
 
-// PASTIKAN NAMESPACE-NYA BENAR SEPERTI INI
+
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
@@ -11,26 +11,20 @@ use Illuminate\Support\Facades\Storage;
 
 class GalleryController extends Controller
 {
-    /**
-     * Menampilkan daftar album.
-     */
+
     public function index()
     {
         $albums = GalleryAlbum::withCount('galleries')->latest()->paginate(12);
         return view('pages.admin.gallery.index', compact('albums'));
     }
 
-    /**
-     * Menampilkan form untuk membuat album baru.
-     */
+
     public function create()
     {
         return view('pages.admin.gallery.create');
     }
 
-    /**
-     * Menyimpan album baru beserta fotonya.
-     */
+
     public function store(Request $request)
     {
         $request->validate([
@@ -56,17 +50,13 @@ class GalleryController extends Controller
         return redirect()->route('admin.galeri.index')->with('success', 'Album dan foto berhasil ditambahkan.');
     }
 
-    /**
-     * Menampilkan form untuk edit album.
-     */
+
     public function edit(GalleryAlbum $galeri)
     {
         return view('pages.admin.gallery.edit', ['album' => $galeri->load('galleries')]);
     }
 
-    /**
-     * Update data album dan menambah foto baru.
-     */
+
     public function update(Request $request, GalleryAlbum $galeri)
     {
         $request->validate([
@@ -91,17 +81,15 @@ class GalleryController extends Controller
         return redirect()->route('admin.galeri.edit', $galeri->id)->with('success', 'Album berhasil diperbarui.');
     }
 
-    /**
-     * Menghapus album beserta semua fotonya.
-     */
+
     public function destroy(GalleryAlbum $galeri)
     {
-        // Hapus semua file foto dari storage
+
         foreach ($galeri->galleries as $photo) {
             Storage::disk('public')->delete($photo->file_path);
         }
 
-        // Hapus record album dari database (foto akan terhapus otomatis karena cascade)
+
         $galeri->delete();
 
         return redirect()->route('admin.galeri.index')->with('success', 'Album berhasil dihapus.');

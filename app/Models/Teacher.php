@@ -17,7 +17,7 @@ class Teacher extends Model
     protected $fillable = [
         'user_id',
         'nip',
-        'mapel', // <-- Menambahkan 'mapel' di sini
+        'mapel',
         'gender',
         'phone_number',
         'address',

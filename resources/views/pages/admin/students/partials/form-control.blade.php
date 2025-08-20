@@ -29,10 +29,10 @@
     </div>
     <div>
         <label for="school_class_id" class="block text-gray-700 font-semibold mb-2">Kelas</label>
-        {{-- Mengubah input Kelas menjadi dropdown --}}
+
         <select id="school_class_id" name="school_class_id" class="w-full px-4 py-2 border border-slate-300 rounded-lg" required>
             @php
-                // Mengambil data kelas dari database untuk pilihan dropdown
+
                 $classes = \App\Models\SchoolClass::orderBy('name')->get();
             @endphp
             <option value="">-- Pilih Kelas --</option>
@@ -45,7 +45,7 @@
     </div>
     <div class="md:col-span-2">
         <label for="jurusan" class="block text-gray-700 font-semibold mb-2">Jurusan</label>
-        {{-- Mengubah input Jurusan menjadi dropdown --}}
+
         <select id="jurusan" name="jurusan" class="w-full px-4 py-2 border border-slate-300 rounded-lg" required>
             <option value="">-- Pilih Jurusan --</option>
             <option value="Teknik Komputer dan Informatika (TKI)" {{ (old('jurusan', $student->jurusan ?? '') == 'Teknik Komputer dan Informatika (TKI)') ? 'selected' : '' }}>

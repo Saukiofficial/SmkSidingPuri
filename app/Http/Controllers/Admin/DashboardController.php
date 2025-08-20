@@ -14,28 +14,28 @@ class DashboardController extends Controller
 {
     public function index()
     {
-        // Data Statistik yang sudah ada
+        
         $postCount = Post::count();
         $teacherCount = Teacher::count();
         $studentCount = Student::count();
         $pendingAdmissionCount = Admission::where('status', 'pending')->count();
 
-        // --- DATA BARU UNTUK DIAGRAM (DENGAN QUERY YANG DIPERBAIKI) ---
+ 
 
-        // 1. Mengambil semua data siswa dan nama kelasnya melalui relasi
+     
         $allStudents = Student::with('schoolClass:id,name')->select('id', 'school_class_id', 'gender')->get()
             ->map(function ($student) {
                 return [
                     'id' => $student->id,
-                    'classroom' => $student->schoolClass->name ?? 'Tanpa Kelas', // Mengambil nama kelas dari relasi
+                    'classroom' => $student->schoolClass->name ?? 'Tanpa Kelas', 
                     'gender' => $student->gender,
                 ];
             });
 
-        // 2. Mengambil daftar kelas yang unik dari data siswa yang ada
+
         $classrooms = $allStudents->pluck('classroom')->unique()->sort()->values();
 
-        // 3. Menghitung persentase gender secara keseluruhan
+
         $genderStats = $allStudents->countBy('gender');
 
         $maleCount = $genderStats->get('Laki-laki', 0);
@@ -46,7 +46,6 @@ class DashboardController extends Controller
             'teacherCount' => $teacherCount,
             'studentCount' => $studentCount,
             'pendingAdmissionCount' => $pendingAdmissionCount,
-            // Mengirim data baru ke view
             'allStudents' => $allStudents,
             'classrooms' => $classrooms,
             'maleCount' => $maleCount,

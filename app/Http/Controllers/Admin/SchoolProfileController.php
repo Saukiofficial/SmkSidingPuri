@@ -8,12 +8,10 @@ use Illuminate\Http\Request;
 
 class SchoolProfileController extends Controller
 {
-    /**
-     * Menampilkan form untuk edit profil sekolah.
-     */
+
     public function edit()
     {
-        // Ambil data profil pertama, atau buat baru jika belum ada
+
         $profile = SchoolProfile::firstOrCreate([], [
             'name' => 'Nama Sekolah Anda',
             'vision' => 'Visi sekolah...',

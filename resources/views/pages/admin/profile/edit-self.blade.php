@@ -4,7 +4,6 @@
 
 @section('content')
 <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-    {{-- Kolom Kiri: Update Informasi Profil --}}
     <div class="lg:col-span-2">
         <div class="bg-white p-8 rounded-xl shadow-md">
             <h2 class="text-2xl font-bold text-gray-800 mb-1">Informasi Profil</h2>
@@ -44,7 +43,7 @@
         </div>
     </div>
 
-    {{-- Kolom Kanan: Update Password --}}
+
     <div>
         <div class="bg-white p-8 rounded-xl shadow-md">
             <h2 class="text-2xl font-bold text-gray-800 mb-1">Ubah Password</h2>

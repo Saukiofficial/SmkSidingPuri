@@ -9,26 +9,20 @@ use Illuminate\Support\Facades\Storage;
 
 class OrganizationalStructureController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+
     public function index()
     {
         $members = OrganizationalStructure::orderBy('display_order')->paginate(15);
         return view('pages.admin.organization.index', compact('members'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
+
     public function create()
     {
         return view('pages.admin.organization.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
+
     public function store(Request $request)
     {
         $request->validate([
@@ -45,17 +39,13 @@ class OrganizationalStructureController extends Controller
         return redirect()->route('admin.struktur-organisasi.index')->with('success', 'Anggota baru berhasil ditambahkan.');
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
+
     public function edit(OrganizationalStructure $struktur_organisasi)
     {
         return view('pages.admin.organization.edit', ['member' => $struktur_organisasi]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
+
     public function update(Request $request, OrganizationalStructure $struktur_organisasi)
     {
         $request->validate([
@@ -78,9 +68,7 @@ class OrganizationalStructureController extends Controller
         return redirect()->route('admin.struktur-organisasi.index')->with('success', 'Data berhasil diperbarui.');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
+
     public function destroy(OrganizationalStructure $struktur_organisasi)
     {
         if ($struktur_organisasi->photo_path) {

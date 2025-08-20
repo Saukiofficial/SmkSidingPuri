@@ -12,7 +12,7 @@
         public function up(): void
         {
             Schema::table('teachers', function (Blueprint $table) {
-                // Menambahkan kolom untuk mata pelajaran setelah kolom NIP
+
                 $table->string('mapel')->after('nip')->nullable()->comment('Mata Pelajaran yang diampu');
             });
         }

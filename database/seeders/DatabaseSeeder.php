@@ -13,7 +13,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // Menambahkan data kelas
+
         SchoolClass::firstOrCreate(['name' => 'Kelas 10']);
         SchoolClass::firstOrCreate(['name' => 'Kelas 11']);
         SchoolClass::firstOrCreate(['name' => 'Kelas 12']);

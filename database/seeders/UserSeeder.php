@@ -15,12 +15,12 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
-        // Ambil ID dari setiap role
+
         $adminRole = Role::where('name', 'admin')->first();
         $teacherRole = Role::where('name', 'guru')->first();
         $studentRole = Role::where('name', 'siswa')->first();
 
-        // 1. Membuat User Admin
+
         $adminUser = User::firstOrCreate(
             ['email' => 'admin@sekolah.com'],
             [
@@ -28,10 +28,10 @@ class UserSeeder extends Seeder
                 'password' => Hash::make('admin123'),
             ]
         );
-        // Menghubungkan user admin dengan role admin
+
         $adminUser->roles()->sync($adminRole->id);
 
-        // 2. Membuat User Guru
+
         $teacherUser = User::firstOrCreate(
             ['email' => 'guru@sekolah.com'],
             [
@@ -41,7 +41,6 @@ class UserSeeder extends Seeder
         );
         $teacherUser->roles()->sync($teacherRole->id);
 
-        // 3. Membuat User Siswa
         $studentUser = User::firstOrCreate(
             ['email' => 'siswa@sekolah.com'],
             [

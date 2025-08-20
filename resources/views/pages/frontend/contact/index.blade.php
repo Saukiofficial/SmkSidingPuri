@@ -470,7 +470,7 @@
 @push('scripts')
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-        // Particle Animation
+
         function createParticles() {
             const particlesContainer = document.getElementById('particles');
             const particleCount = 50;
@@ -479,14 +479,14 @@
                 const particle = document.createElement('div');
                 particle.className = 'particle';
 
-                // Random positioning
+
                 particle.style.left = Math.random() * 100 + '%';
                 particle.style.top = Math.random() * 100 + '%';
 
-                // Random animation delay
+
                 particle.style.animationDelay = Math.random() * 6 + 's';
 
-                // Random size variation
+
                 const size = Math.random() * 3 + 2;
                 particle.style.width = size + 'px';
                 particle.style.height = size + 'px';
@@ -497,7 +497,7 @@
 
         createParticles();
 
-        // Enhanced form interactions
+
         const inputs = document.querySelectorAll('.form-input, .form-textarea');
         inputs.forEach(input => {
             input.addEventListener('focus', function() {
@@ -509,21 +509,21 @@
             });
         });
 
-        // Button loading effect
+
         const submitBtn = document.querySelector('.submit-btn');
         submitBtn.addEventListener('click', function(e) {
-            // Allow form submission but add visual feedback
+
             const originalText = this.innerHTML;
             this.innerHTML = '<i class="fas fa-spinner fa-spin" style="margin-right: 0.5rem;"></i>Mengirim...';
             this.disabled = true;
 
-            // Re-enable after a short delay to allow form submission
+
             setTimeout(() => {
                 this.disabled = false;
             }, 100);
         });
 
-        // 3D tilt effect for cards
+
         const contactContainer = document.querySelector('.contact-container');
         contactContainer.addEventListener('mousemove', function(e) {
             const rect = this.getBoundingClientRect();

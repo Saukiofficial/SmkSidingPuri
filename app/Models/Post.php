@@ -25,8 +25,6 @@ class Post extends Model
     ];
 
     /**
-     * Relasi Many-to-One ke model User.
-     * Menunjukkan penulis/author dari post ini.
      */
     public function author()
     {

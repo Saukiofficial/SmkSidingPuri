@@ -10,7 +10,7 @@
         font-family: 'Inter', sans-serif;
     }
 
-    /* Custom Gradient Background */
+
     .luxury-gradient {
         background: linear-gradient(135deg, #667eea 0%, #764ba2 25%, #f093fb 75%, #f5576c 100%);
         background-size: 400% 400%;
@@ -23,7 +23,7 @@
         100% { background-position: 0% 50%; }
     }
 
-    /* Glassmorphism Effect */
+
     .glass-card {
         background: rgba(255, 255, 255, 0.1);
         backdrop-filter: blur(20px);
@@ -39,7 +39,7 @@
         border: 1px solid rgba(255, 255, 255, 0.3);
     }
 
-    /* 3D Hover Effects */
+
     .card-3d {
         transform-style: preserve-3d;
         transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
@@ -54,7 +54,7 @@
         transform: scale(1.1);
     }
 
-    /* FIXED: Card Image Styling */
+
     .card-image {
         opacity: 1 !important; /* Force opacity to 1 */
         transition: transform 0.8s cubic-bezier(0.23, 1, 0.32, 1);
@@ -64,7 +64,7 @@
         object-fit: cover;
     }
 
-    /* Image Container */
+
     .image-container {
         position: relative;
         width: 100%;
@@ -111,7 +111,7 @@
         background-clip: text;
     }
 
-    /* Premium Shadows */
+
     .premium-shadow {
         box-shadow:
             0 4px 8px rgba(0, 0, 0, 0.04),
@@ -120,7 +120,7 @@
             0 32px 64px rgba(0, 0, 0, 0.10);
     }
 
-    /* Particle Animation */
+
     .particle {
         position: absolute;
         background: rgba(255, 255, 255, 0.1);
@@ -133,14 +133,14 @@
         50% { transform: translateY(-20px) scale(1.1); opacity: 1; }
     }
 
-    /* Photo Count Badge */
+
     .photo-badge {
         background: linear-gradient(135deg, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0.1) 100%);
         backdrop-filter: blur(10px);
         border: 1px solid rgba(255,255,255,0.3);
     }
 
-    /* Hover Overlay Effect */
+
     .hover-overlay {
         background: linear-gradient(135deg, rgba(102, 126, 234, 0.8) 0%, rgba(118, 75, 162, 0.8) 100%);
         opacity: 0;
@@ -151,7 +151,7 @@
         opacity: 1;
     }
 
-    /* Fade In Animation */
+
     .fade-in {
         opacity: 0;
         transform: translateY(30px);
@@ -165,14 +165,14 @@
         }
     }
 
-    /* Mobile Optimizations */
+
     @media (max-width: 768px) {
         .card-3d:hover {
             transform: translateY(-10px) scale(1.02);
         }
     }
 
-    /* Laravel Pagination Styling */
+
     .pagination-wrapper .pagination {
         @apply flex items-center space-x-2;
     }
@@ -197,13 +197,13 @@
         background: linear-gradient(135deg, #667eea, #764ba2);
     }
 
-    /* Touch Active State */
+
     .touch-active {
         transform: scale(0.98) !important;
         transition: transform 0.2s ease;
     }
 
-    /* Enhanced mobile responsiveness */
+
     @media (max-width: 640px) {
         .luxury-gradient {
             padding: 1rem 0;
@@ -224,7 +224,7 @@
         }
     }
 
-    /* Improved accessibility */
+
     @media (prefers-reduced-motion: reduce) {
         .card-3d,
         .card-image,
@@ -345,9 +345,9 @@
 
 @push('scripts')
 <script>
-    // SIMPLIFIED: Add loading animation and smooth interactions
+
     document.addEventListener('DOMContentLoaded', function() {
-        // Initialize cards with fade-in animation
+
         const cards = document.querySelectorAll('.card-3d');
         cards.forEach((card, index) => {
             card.style.opacity = '0';
@@ -359,10 +359,10 @@
             }, index * 100);
         });
 
-        // Add smooth scroll behavior
+
         document.documentElement.style.scrollBehavior = 'smooth';
 
-        // Intersection Observer for scroll animations
+
         const observerOptions = {
             threshold: 0.1,
             rootMargin: '0px 0px -50px 0px'
@@ -376,28 +376,28 @@
             });
         }, observerOptions);
 
-        // Observe all animatable elements
+
         document.querySelectorAll('.fade-in').forEach(element => {
             observer.observe(element);
         });
 
-        // FIXED: Simplified image handling
+
         const images = document.querySelectorAll('.card-image');
         images.forEach((img, index) => {
-            // Show placeholder initially for slow loading images
+
             const placeholder = img.parentElement.querySelector('.image-placeholder');
             if (placeholder) {
                 placeholder.classList.add('show');
             }
 
-            // Handle successful image load
+
             img.addEventListener('load', function() {
                 if (placeholder) {
                     placeholder.classList.remove('show');
                 }
             });
 
-            // Handle image load error
+
             img.addEventListener('error', function() {
                 console.warn('Failed to load image:', this.src);
                 if (placeholder) {
@@ -414,13 +414,13 @@
                 this.style.display = 'none';
             });
 
-            // Force check if image is already loaded (cached)
+
             if (img.complete) {
                 img.dispatchEvent(new Event('load'));
             }
         });
 
-        // Enhanced hover effects for mobile
+
         if ('ontouchstart' in window) {
             cards.forEach(card => {
                 card.addEventListener('touchstart', function() {
@@ -436,7 +436,7 @@
         }
     });
 
-    // Performance optimization: Reduce animations on low-end devices
+
     if (navigator.hardwareConcurrency && navigator.hardwareConcurrency < 4) {
         document.documentElement.style.setProperty('--animation-duration', '0.3s');
     }

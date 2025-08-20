@@ -15,8 +15,7 @@ class AlumniImport implements ToModel, WithHeadingRow
     */
     public function model(array $row)
     {
-        // Memetakan setiap baris dari Excel ke model Alumnus
-        // Pastikan nama kolom di Excel sama dengan kunci di sini ('name', 'graduation_year', 'occupation')
+
         return new Alumnus([
             'name'              => $row['name'],
             'graduation_year'   => $row['graduation_year'],

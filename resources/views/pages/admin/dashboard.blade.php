@@ -3,9 +3,9 @@
 @section('title', 'Dashboard')
 
 @section('content')
-    {{-- Baris untuk menampilkan statistik --}}
+   
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 max-w-7xl mx-auto mb-8">
-        {{-- Card Statistik (Total Berita, Pendaftar, Guru, Siswa) tidak diubah --}}
+
         <!-- Card Total Berita -->
         <div class="group bg-gradient-to-br from-blue-50 to-blue-100 hover:from-blue-100 hover:to-blue-200 p-6 rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 border border-blue-100">
             <div class="flex justify-between items-start">
@@ -75,9 +75,9 @@
         </div>
     </div>
 
-    {{-- BAGIAN DIAGRAM YANG DIPERBAHARUI --}}
+
     <div class="max-w-7xl mx-auto space-y-6">
-        {{-- Header Section --}}
+
         <div class="bg-gradient-to-r from-slate-900 via-purple-900 to-slate-900 rounded-3xl p-8 shadow-2xl">
             <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
                 <div class="flex items-center space-x-4">
@@ -103,9 +103,8 @@
             </div>
         </div>
 
-        {{-- Charts Container --}}
         <div class="grid grid-cols-1 xl:grid-cols-5 gap-6">
-            {{-- Bar Chart Container --}}
+
             <div id="barChartContainer" class="xl:col-span-3">
                 <div class="bg-white rounded-3xl shadow-xl overflow-hidden border border-gray-100">
                     <div class="bg-gradient-to-r from-indigo-500 to-purple-600 px-6 py-4">
@@ -124,7 +123,7 @@
                 </div>
             </div>
 
-            {{-- Gender Chart Container --}}
+
             <div id="genderChartContainer" class="xl:col-span-2">
                 <div class="bg-white rounded-3xl shadow-xl overflow-hidden border border-gray-100 h-full">
                     <div class="bg-gradient-to-r from-pink-500 to-rose-500 px-6 py-4">
@@ -144,7 +143,7 @@
             </div>
         </div>
 
-        {{-- Stats Summary Cards --}}
+
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div class="bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl p-6 text-white shadow-lg">
                 <div class="flex items-center justify-between">
@@ -186,43 +185,39 @@
 @endsection
 
 @push('scripts')
-{{-- Memuat pustaka Chart.js --}}
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <script>
     document.addEventListener('DOMContentLoaded', function () {
-        // Mengambil data dari controller
+
         let allStudents = @json($allStudents);
         const classrooms = @json($classrooms);
 
-        // --- TINDAKAN PERBAIKAN 1: Menyeragamkan data gender di sisi klien ---
-        // Ini untuk mengatasi jika data di database tidak konsisten (misal: 'L', 'P', 'laki-laki', 'Perempuan')
+
         allStudents = allStudents.map(student => {
-            let normalizedGender = null; // Default ke null jika tidak dikenali
+            let normalizedGender = null;
             if (student.gender && typeof student.gender === 'string') {
                 const lowerCaseGender = student.gender.toLowerCase().trim();
-                // Cek untuk 'l' atau variasi dari 'laki'
+
                 if (lowerCaseGender === 'l' || lowerCaseGender.startsWith('laki')) {
                     normalizedGender = 'Laki-laki';
-                // Cek untuk 'p' atau variasi dari 'perempuan'
                 } else if (lowerCaseGender === 'p' || lowerCaseGender.startsWith('perempuan')) {
                     normalizedGender = 'Perempuan';
                 }
             }
-            // Mengembalikan objek baru agar tidak mengubah data asli secara langsung
+
             return { ...student, gender: normalizedGender };
         });
 
-        // --- TINDAKAN PERBAIKAN 2: Menghitung ulang data awal di JavaScript ---
-        // Ini memastikan data awal yang ditampilkan akurat, terlepas dari data yang dikirim dari controller.
+
         const initialMaleCount = allStudents.filter(s => s.gender === 'Laki-laki').length;
         const initialFemaleCount = allStudents.filter(s => s.gender === 'Perempuan').length;
 
-        // Memperbarui kartu ringkasan dengan data awal yang akurat
+
         document.getElementById('maleStudentsDisplay').textContent = initialMaleCount;
         document.getElementById('femaleStudentsDisplay').textContent = initialFemaleCount;
 
-        // Custom gradient colors
+
         const createGradient = (ctx, colorStart, colorEnd) => {
             const gradient = ctx.createLinearGradient(0, 0, 0, 400);
             gradient.addColorStop(0, colorStart);
@@ -230,7 +225,6 @@
             return gradient;
         };
 
-        // --- Konfigurasi Diagram Jenis Kelamin (Doughnut Chart) ---
         const genderCtx = document.getElementById('genderChart').getContext('2d');
         const genderChart = new Chart(genderCtx, {
             type: 'doughnut',
@@ -238,7 +232,7 @@
                 labels: ['👨‍🎓 Laki-laki', '👩‍🎓 Perempuan'],
                 datasets: [{
                     label: 'Jenis Kelamin',
-                    data: [initialMaleCount, initialFemaleCount], // Menggunakan data awal dari JS
+                    data: [initialMaleCount, initialFemaleCount],
                     backgroundColor: [
                         'rgba(59, 130, 246, 0.9)', // blue-500
                         'rgba(236, 72, 153, 0.9)', // pink-500
@@ -296,7 +290,7 @@
                 labels: classrooms,
                 datasets: [{
                     label: '👥 Jumlah Siswa',
-                    data: [], // Akan diisi oleh fungsi update
+                    data: [],
                     backgroundColor: function(context) {
                         const {ctx, chartArea} = context.chart;
                         if (!chartArea) return null;
@@ -346,7 +340,7 @@
             }
         });
 
-        // --- Fungsi untuk Memperbarui Diagram ---
+
         function updateCharts(filter) {
             let filteredStudents = allStudents;
             if (filter !== 'all') {
@@ -382,18 +376,18 @@
             studentsByClassChart.update();
         }
 
-        // --- Event Listener untuk Filter Dropdown ---
+
         document.getElementById('classroomFilter').addEventListener('change', function(e) {
             updateCharts(e.target.value);
         });
 
-        // --- Panggil update pertama kali untuk mengisi data awal ---
+
         updateCharts('all');
     });
 </script>
 
 <style>
-    /* Custom animations and effects */
+
     @keyframes fadeInUp {
         from {
             opacity: 0;
@@ -409,14 +403,14 @@
         animation: fadeInUp 0.6s ease-out forwards;
     }
 
-    /* Glassmorphism effect */
+
     .glass-effect {
         background: rgba(255, 255, 255, 0.1);
         backdrop-filter: blur(10px);
         border: 1px solid rgba(255, 255, 255, 0.2);
     }
 
-    /* Hover effects */
+
     .chart-container {
         transition: all 0.3s ease;
     }

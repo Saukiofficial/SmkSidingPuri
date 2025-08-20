@@ -27,10 +27,7 @@ class Admission extends Model
         'birth_date' => 'date',
     ];
 
-    /**
-     * Relasi One-to-Many ke model AdmissionDocument.
-     * Satu pendaftaran bisa memiliki banyak dokumen.
-     */
+
     public function documents()
     {
         return $this->hasMany(AdmissionDocument::class);

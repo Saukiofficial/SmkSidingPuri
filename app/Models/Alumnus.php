@@ -10,8 +10,8 @@ class Alumnus extends Model
     use HasFactory;
 
     /**
-     * Nama tabel yang digunakan oleh model.
-     * Defaultnya adalah 'alumnuses', perlu di-override.
+     *
+     *
      *
      * @var string
      */

@@ -41,7 +41,7 @@
                 <p class="text-blue-100 mt-1">Isi semua informasi yang diperlukan dengan lengkap</p>
             </div>
 
-            {{-- Error Validation Block --}}
+
             @if ($errors->any())
                 <div class="m-6 bg-red-50 border-l-4 border-red-400 rounded-lg p-4 shadow-sm">
                     <div class="flex items-center mb-2">
@@ -220,7 +220,7 @@
 </div>
 
 <script>
-// Character counter for content textarea
+
 document.addEventListener('DOMContentLoaded', function() {
     const contentTextarea = document.getElementById('content');
     const charCount = document.getElementById('charCount');
@@ -231,7 +231,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     contentTextarea.addEventListener('input', updateCharCount);
-    updateCharCount(); // Initial count
+    updateCharCount();
 });
 </script>
 @endsection

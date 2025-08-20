@@ -15,8 +15,8 @@ class GalleryAlbum extends Model
     ];
 
     /**
-     * Relasi One-to-Many ke model Gallery.
-     * Satu album memiliki banyak item galeri.
+     *
+     *
      */
     public function galleries()
     {

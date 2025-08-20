@@ -328,17 +328,17 @@
                                                 @endif
                                             </div>
                                         </td>
-                                        {{--  <td class="py-4 px-6">
+                                        <td class="py-4 px-6">
                                             <span class="inline-flex items-center px-3 py-1 rounded-full text-sm bg-gradient-to-r from-blue-500/20 to-purple-500/20 text-white border border-white/20">
                                                 {{ $item->graduation_year }}
-                                            </span>  --}}
+                                            </span>
                                         </td>
-                                        <td class="py-4 px-6">
+                                        {{--  <td class="py-4 px-6">
                                             <span class="text-white/90">{{ $item->occupation ?? '-' }}</span>
                                             @if($item->company)
                                             <p class="text-xs text-white/50">di {{ $item->company }}</p>
                                             @endif
-                                        </td>
+                                        </td>  --}}
                                     </tr>
                                     @empty
                                     <tr>
@@ -376,7 +376,7 @@
 @push('scripts')
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-        // Initialize animations
+
         const cards = document.querySelectorAll('.fade-in');
         cards.forEach((card, index) => {
             card.style.opacity = '0';
@@ -388,7 +388,7 @@
             }, index * 100);
         });
 
-        // Enhanced table row interactions
+
         const tableRows = document.querySelectorAll('.luxury-table tbody tr');
         tableRows.forEach(row => {
             row.addEventListener('mouseenter', function() {
@@ -402,7 +402,7 @@
             });
         });
 
-        // Profile avatar hover effects
+
         const avatars = document.querySelectorAll('.profile-avatar');
         avatars.forEach(avatar => {
             avatar.addEventListener('mouseenter', function() {
@@ -414,7 +414,7 @@
             });
         });
 
-        // Testimonial card tilt effect
+
         const testimonialCards = document.querySelectorAll('.testimonial-card');
         testimonialCards.forEach(card => {
             card.addEventListener('mousemove', function(e) {
@@ -434,7 +434,7 @@
             });
         });
 
-        // Loading state for images
+
         const images = document.querySelectorAll('.profile-avatar');
         images.forEach(img => {
             img.addEventListener('load', function() {
@@ -447,10 +447,10 @@
             });
         });
 
-        // Smooth scrolling
+
         document.documentElement.style.scrollBehavior = 'smooth';
 
-        // Performance optimization for mobile
+
         if (window.innerWidth <= 768) {
             testimonialCards.forEach(card => {
                 card.addEventListener('touchstart', function() {
@@ -468,7 +468,7 @@
 </script>
 
 <style>
-    /* Enhanced mobile responsiveness */
+
     @media (max-width: 640px) {
         .luxury-gradient {
             padding: 1rem 0;
@@ -495,7 +495,6 @@
         }
     }
 
-    /* Accessibility improvements */
     @media (prefers-reduced-motion: reduce) {
         .testimonial-card,
         .profile-avatar,
@@ -510,7 +509,6 @@
         }
     }
 
-    /* High contrast mode */
     @media (prefers-contrast: high) {
         .glass-card,
         .glass-card-strong,

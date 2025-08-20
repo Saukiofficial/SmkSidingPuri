@@ -8,20 +8,16 @@ use Illuminate\Support\Str;
 
 class AdmissionController extends Controller
 {
-    /**
-     * Menampilkan halaman pendaftaran PPDB.
-     */
+
     public function index()
     {
         return view('pages.frontend.admission.index');
     }
 
-    /**
-     * Menyimpan data pendaftar baru beserta dokumennya.
-     */
+
     public function store(Request $request)
     {
-        // Validasi untuk semua field di form yang lengkap
+
         $request->validate([
             'full_name' => 'required|string|max:255',
             'nisn' => 'nullable|string|max:20',
@@ -44,12 +40,12 @@ class AdmissionController extends Controller
             'agreement' => 'required',
         ]);
 
-        // Simpan data utama pendaftar
+
         $admission = Admission::create($request->all() + [
             'registration_number' => 'PPDB-' . date('Y') . '-' . Str::upper(Str::random(6)),
         ]);
 
-        // Simpan foto siswa
+
         if ($request->hasFile('photo')) {
             $path = $request->file('photo')->store('admissions/photos', 'public');
             $admission->documents()->create([
@@ -58,7 +54,7 @@ class AdmissionController extends Controller
             ]);
         }
 
-        // Simpan dokumen-dokumen lainnya
+
         $documents = [
             'document_birth_certificate' => 'Akta Kelahiran',
             'document_family_card' => 'Kartu Keluarga',
@@ -79,9 +75,7 @@ class AdmissionController extends Controller
         return redirect()->route('admission.index')->with('success', 'Pendaftaran Anda berhasil. Nomor pendaftaran Anda adalah ' . $admission->registration_number);
     }
 
-    /**
-     * Menampilkan halaman hasil seleksi.
-     */
+
     public function results(Request $request)
     {
         $admission = null;

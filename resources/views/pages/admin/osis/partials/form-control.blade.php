@@ -1,5 +1,5 @@
 @php
-    // Daftar jabatan OSIS yang sudah ditentukan
+
     $positions = [
         'Ketua OSIS',
         'Wakil Ketua OSIS',
@@ -26,7 +26,7 @@
     </div>
     <div>
         <label for="position" class="block text-gray-700 font-semibold mb-2">Jabatan</label>
-        {{-- Mengubah input teks menjadi dropdown/select --}}
+
         <select id="position" name="position" class="w-full px-4 py-2 border border-slate-300 rounded-lg" required>
             <option value="">-- Pilih Jabatan --</option>
             @foreach($positions as $position)

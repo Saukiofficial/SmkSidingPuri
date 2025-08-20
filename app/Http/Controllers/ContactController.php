@@ -8,18 +8,14 @@ use Illuminate\Http\Request;
 
 class ContactController extends Controller
 {
-    /**
-     * Menampilkan halaman kontak dengan formulir.
-     */
+    
     public function index()
     {
         $profile = SchoolProfile::first(['address', 'email', 'phone_number', 'map_url']);
         return view('pages.frontend.contact.index', compact('profile'));
     }
 
-    /**
-     * Menyimpan pesan dari formulir kontak.
-     */
+   
     public function store(Request $request)
     {
         $request->validate([

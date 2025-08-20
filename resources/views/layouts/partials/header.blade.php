@@ -1,4 +1,4 @@
-{{-- x-data untuk state Alpine.js (mengelola buka/tutup menu mobile) --}}
+
 <header x-data="{ open: false }" class="bg-white/80 backdrop-blur-lg shadow-sm sticky top-0 z-50 transition-all duration-300">
     <nav class="container mx-auto px-6 py-3">
         <div class="flex items-center justify-between">

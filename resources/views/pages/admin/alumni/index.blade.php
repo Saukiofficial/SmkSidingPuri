@@ -6,7 +6,6 @@
 <div class="bg-white p-8 rounded-xl shadow-md">
     <div class="flex justify-between items-center mb-6 flex-wrap gap-4">
         <h2 class="text-2xl font-bold text-gray-800">Daftar Alumni</h2>
-        {{-- Grup Tombol Aksi --}}
         <div class="flex items-center gap-2">
             <a href="{{ route('admin.alumni.create') }}" class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded-lg transition duration-300 text-sm">
                 <i class="fas fa-plus mr-2"></i> Tambah Alumni
@@ -17,7 +16,7 @@
         </div>
     </div>
 
-    {{-- Notifikasi Sukses dan Error --}}
+
     @if (session('success'))
         <div class="bg-green-100 border-l-4 border-green-500 text-green-700 p-4 mb-6 rounded-lg" role="alert">
             <p>{{ session('success') }}</p>
@@ -38,7 +37,7 @@
         </div>
     @endif
 
-    {{-- Form untuk Import Excel --}}
+    {{--Import Excel --}}
     <div class="bg-gray-50 p-4 rounded-lg border border-gray-200 mb-6">
         <form action="{{ route('admin.alumni.import') }}" method="POST" enctype="multipart/form-data" class="flex items-center gap-4">
             @csrf

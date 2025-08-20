@@ -10,9 +10,7 @@ use Illuminate\Support\Str;
 
 class AcademicController extends Controller
 {
-    /**
-     * Menampilkan halaman jadwal pelajaran.
-     */
+
     public function schedule(Request $request)
     {
         $classes = SchoolClass::all();
@@ -30,14 +28,12 @@ class AcademicController extends Controller
         return view('pages.frontend.academic.schedule', compact('classes', 'schedules'));
     }
 
-    /**
-     * Menampilkan halaman kalender akademik dengan data ringkasan.
-     */
+
     public function calendar()
     {
         $events = AcademicCalendar::latest()->get();
 
-        // Menghitung data untuk ringkasan
+
         $totalEvents = $events->count();
         $examCount = $events->filter(function ($event) {
             return Str::contains(strtolower($event->title), ['uts', 'uas', 'ujian']);

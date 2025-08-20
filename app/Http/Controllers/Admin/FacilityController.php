@@ -9,26 +9,19 @@ use Illuminate\Support\Facades\Storage;
 
 class FacilityController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+
     public function index()
     {
         $facilities = Facility::latest()->paginate(10);
         return view('pages.admin.facilities.index', compact('facilities'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
         return view('pages.admin.facilities.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
+
     public function store(Request $request)
     {
         $request->validate([
@@ -44,17 +37,12 @@ class FacilityController extends Controller
         return redirect()->route('admin.fasilitas.index')->with('success', 'Fasilitas berhasil ditambahkan.');
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
+
     public function edit(Facility $fasilitas)
     {
         return view('pages.admin.facilities.edit', ['facility' => $fasilitas]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, Facility $fasilitas)
     {
         $request->validate([
@@ -76,9 +64,7 @@ class FacilityController extends Controller
         return redirect()->route('admin.fasilitas.index')->with('success', 'Fasilitas berhasil diperbarui.');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
+
     public function destroy(Facility $fasilitas)
     {
         if ($fasilitas->image_path) {

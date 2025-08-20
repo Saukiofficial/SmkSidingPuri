@@ -19,37 +19,33 @@ class StudentsImport implements ToModel, WithHeadingRow
     */
     public function model(array $row)
     {
-        // 1. Cari atau buat User baru
-        // Membuat email unik sementara berdasarkan nama siswa
+
         $user = User::firstOrCreate(
             ['email' => strtolower(str_replace(' ', '', $row['nama_siswa'])).'@sekolah.com'],
             [
                 'name' => $row['nama_siswa'],
-                'password' => Hash::make('password123'), // Default password untuk siswa baru
+                'password' => Hash::make('password123'),
             ]
         );
 
-        // 2. Beri role 'siswa'
+
         $studentRole = Role::where('name', 'siswa')->first();
         if ($studentRole) {
             $user->roles()->syncWithoutDetaching([$studentRole->id]);
         }
 
-        // 3. Cari atau buat Kelas baru
+
         $schoolClass = SchoolClass::firstOrCreate(['name' => $row['kelas']]);
 
-        // 4. Logika untuk Jenis Kelamin yang lebih fleksibel
-        // Mengubah teks menjadi huruf kecil dan menghapus spasi/tanda hubung
+
         $genderText = strtolower(str_replace(['-', ' '], '', $row['jenis_kelamin']));
         $gender = ($genderText == 'lakilaki') ? 'male' : 'female';
 
-        // 5. Buat atau update data Siswa
-        // Menggunakan firstOrCreate untuk menghindari duplikasi data siswa berdasarkan user_id
+
         return Student::firstOrCreate(
             ['user_id' => $user->id],
             [
-                'nisn'          => $user->id . rand(1000, 9999), // NISN unik sementara
-                'school_class_id' => $schoolClass->id,
+                'nisn'          => $user->id . rand(1000, 9999),
                 'jurusan'       => $row['jurusan'],
                 'gender'        => $gender,
             ]

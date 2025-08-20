@@ -7,7 +7,7 @@
     <div class="flex flex-wrap justify-between items-center mb-6 gap-4">
         <h2 class="text-2xl font-bold text-gray-800">Daftar Siswa</h2>
         <div class="flex flex-wrap gap-2">
-            {{-- TOMBOL TAMBAH SISWA --}}
+
             <a href="{{ route('admin.data-siswa.create') }}" class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded-lg text-sm">
                 <i class="fas fa-plus mr-2"></i> Tambah Siswa
             </a>

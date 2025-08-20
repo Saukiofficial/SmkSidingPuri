@@ -9,7 +9,7 @@
         public function up(): void
         {
             Schema::table('admissions', function (Blueprint $table) {
-                // Menambahkan kolom untuk pilihan jurusan setelah asal sekolah
+
                 $table->string('jurusan_pilihan')->after('previous_school')->nullable();
             });
         }

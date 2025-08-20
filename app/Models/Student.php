@@ -13,7 +13,7 @@ class Student extends Model
         'user_id',
         'nisn',
         'school_class_id',
-        'jurusan', // <-- TAMBAHKAN BARIS INI
+        'jurusan',
         'gender',
         'address',
     ];

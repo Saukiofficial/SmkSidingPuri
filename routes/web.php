@@ -28,14 +28,10 @@ use App\Http\Controllers\Admin\AcademicCalendarController;
 use App\Http\Controllers\Admin\OsisMemberController;
 use App\Http\Controllers\Admin\UserProfileController;
 
-// Breeze Controller for User Profile
+
 use App\Http\Controllers\ProfileController as BreezeProfileController;
 
-/*
-|--------------------------------------------------------------------------
-| Rute Halaman Publik (Frontend)
-|--------------------------------------------------------------------------
-*/
+
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
 Route::controller(PageController::class)->group(function () {
@@ -72,22 +68,18 @@ Route::get('/alumni', [AlumniController::class, 'index'])->name('alumni.index');
 Route::get('/kontak', [ContactController::class, 'index'])->name('contact.index');
 Route::post('/kontak', [ContactController::class, 'store'])->name('contact.store');
 
-/*
-|--------------------------------------------------------------------------
-| Rute Bawaan Breeze & Panel Admin
-|--------------------------------------------------------------------------
-*/
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard.user');
 
 Route::middleware('auth')->group(function () {
-    // Rute profil user bawaan Breeze
+
     Route::get('/profile', [BreezeProfileController::class, 'edit'])->name('profile.edit.user');
     Route::patch('/profile', [BreezeProfileController::class, 'update'])->name('profile.update.user');
     Route::delete('/profile', [BreezeProfileController::class, 'destroy'])->name('profile.destroy.user');
 
-    // Grup Rute Panel Admin
+
     Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
@@ -103,7 +95,6 @@ Route::middleware('auth')->group(function () {
         Route::resource('/fasilitas', AdminFacilityController::class)->except('show');
         Route::resource('/data-guru', TeacherController::class);
 
-        // TINDAKAN PERBAIKAN: Rute impor dan template dipindahkan ke dalam grup admin
         Route::post('/alumni/import', [AdminAlumniController::class, 'import'])->name('alumni.import');
         Route::get('/alumni/template', [AdminAlumniController::class, 'downloadTemplate'])->name('alumni.template');
         Route::resource('/alumni', AdminAlumniController::class);
@@ -112,13 +103,13 @@ Route::middleware('auth')->group(function () {
         Route::resource('/pengurus-alumni', AlumniBoardController::class);
 
 
-        // Rute untuk Data Siswa
+        // Rute  Data Siswa
         Route::post('/data-siswa/import', [AdminStudentController::class, 'import'])->name('data-siswa.import');
         Route::get('/data-siswa/export', [AdminStudentController::class, 'export'])->name('data-siswa.export');
         Route::get('/data-siswa/template', [AdminStudentController::class, 'downloadTemplate'])->name('data-siswa.template');
         Route::resource('/data-siswa', AdminStudentController::class);
 
-        // Rute untuk Profil Admin
+        // Rute Profil Admin
         Route::get('/my-profile', [UserProfileController::class, 'edit'])->name('my-profile.edit');
         Route::patch('/my-profile', [UserProfileController::class, 'update'])->name('my-profile.update');
         Route::put('/my-profile/password', [UserProfileController::class, 'updatePassword'])->name('my-profile.password');
@@ -127,9 +118,4 @@ Route::middleware('auth')->group(function () {
     });
 });
 
-/*
-|--------------------------------------------------------------------------
-| Rute Autentikasi (Otomatis dari Breeze)
-|--------------------------------------------------------------------------
-*/
 require __DIR__.'/auth.php';

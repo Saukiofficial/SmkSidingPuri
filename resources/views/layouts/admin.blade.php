@@ -22,7 +22,7 @@
             }
         }
     </script>
-    {{-- Alpine.js interaktivitas dropdown --}}
+
     <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 </head>
 <body class="bg-slate-100 font-inter">
@@ -42,7 +42,7 @@
                 </a>
             </div>
             <nav class="flex-grow px-4 py-2">
-                {{-- Link navigasi Anda tidak diubah --}}
+
                 <a href="{{ route('admin.dashboard') }}" class="flex items-center px-4 py-2.5 rounded-lg transition duration-200 {{ request()->routeIs('admin.dashboard') ? 'bg-indigo-600 text-white' : 'hover:bg-indigo-700' }}">
                     <i class="fas fa-tachometer-alt fa-fw mr-3"></i> Dashboard
                 </a>
@@ -94,7 +94,7 @@
         <!-- Main Content -->
         <div class="flex-1 flex flex-col min-w-0">
             <header class="bg-white shadow-sm h-20 flex items-center justify-between px-4 md:px-8">
-                {{-- Header tidak diubah --}}
+
                 <div class="md:hidden">
                     <button @click="sidebarOpen = !sidebarOpen" class="text-gray-500 focus:outline-none">
                         <i class="fas fa-bars text-2xl"></i>
@@ -105,7 +105,7 @@
                     <h1 class="text-2xl font-bold">@yield('title')</h1>
                 </div>
 
-                {{-- Dropdown Profil Admin --}}
+
                 <div x-data="{ open: false }" class="relative">
                     <button @click="open = !open" class="flex items-center focus:outline-none">
                         <div class="text-right mr-4 hidden sm:block">
@@ -159,13 +159,11 @@
     </div>
 
     <style>
-        /* CSS tidak diubah */
+
         @media (min-width: 768px) { .flex-1 { width: calc(100vw - 256px); } }
         main { scroll-behavior: smooth; }
         body { overflow-x: hidden; }
     </style>
-
-    {{-- TINDAKAN PERBAIKAN: Menambahkan @stack('scripts') sebelum penutup body --}}
     @stack('scripts')
 </body>
 </html>

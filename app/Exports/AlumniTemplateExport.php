@@ -12,7 +12,7 @@ class AlumniTemplateExport implements WithHeadings
     */
     public function headings(): array
     {
-        // Ini adalah header kolom untuk file template Excel
+
         return [
             'name',
             'graduation_year',
