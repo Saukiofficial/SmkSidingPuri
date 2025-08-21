@@ -669,7 +669,7 @@
 
                 <!-- Character Column -->
                 <div class="hidden md:flex justify-center">
-                    <img src="{{ asset('images/siswa-siswi.png') }}"
+                    <img src="{{ asset('images/siswasiswi.png') }}"
                          alt="Karakter Siswa SMK"
                          class="hero-character max-w-lg lg:max-w-xl">
                 </div>

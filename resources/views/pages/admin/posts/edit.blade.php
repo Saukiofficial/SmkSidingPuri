@@ -209,6 +209,8 @@ document.addEventListener('DOMContentLoaded', function() {
     updateCharCount(); // Initial count
 });
 </script>
+script>
+<!-- Tailwind CSS and FontAwesome -->
 
 <!-- Custom Styles -->
 <style>
